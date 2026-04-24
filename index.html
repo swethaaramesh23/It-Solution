@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STACKLY IT Solutions</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ ADD THIS (for social icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Background Animation -->
+<div class="bg-animation"></div>
+
+<!-- HEADER -->
+<header class="header">
+<div class="logo">
+  <a href="index.html">
+    <img src="logo.png" alt="STACKLY Logo">
+  </a>
+</div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#blog">Blogs</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <button id="themeToggle">🌙</button>
+</header>
+
+<main>
+  
+<!-- HOME -->
+<section id="home" class="hero">
+  <div class="hero-text">
+    <h1 id="typing"></h1>
+
+    <p>
+      Powering India’s Digital Future with scalable, secure, and modern IT solutions.
+    </p>
+
+    <button class="btn glow-btn" onclick="scrollToSection('services')">
+      Explore Services
+    </button>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-container">
+
+    <div class="stat-box">
+      <h2>700+</h2>
+      <p>Projects Completed</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>150+</h2>
+      <p>IT Experts</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>95%</h2>
+      <p>Client Satisfaction</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>12+</h2>
+      <p>Years Experience</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section reveal">
+  <h2>About Us</h2>
+
+  <p>
+    <strong>STACKLY IT Solutions</strong> delivers scalable, secure, and future-ready
+    digital infrastructure for modern businesses.
+  </p>
+
+  <div class="about-box">
+    <h3>Our Vision</h3>
+    <p>To make advanced technology accessible to everyone.</p>
+
+    <h3>Our Mission</h3>
+    <p>To build scalable and intelligent digital ecosystems.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section reveal">
+  <h2>Our Services</h2>
+
+  <p class="service-desc">
+    Future-ready solutions designed for performance, scalability, and security.
+  </p>
+
+  <div class="cards">
+    <div class="card" onclick="showService('Cloud Solutions')">
+      <h3>Cloud Solutions</h3>
+      <p>Scalable cloud infrastructure.</p>
+    </div>
+
+    <div class="card" onclick="showService('AI & Data Analytics')">
+      <h3>AI & Data Analytics</h3>
+      <p>Transform data into insights.</p>
+    </div>
+
+    <div class="card" onclick="showService('Cyber Security')">
+      <h3>Cyber Security</h3>
+      <p>Advanced protection systems.</p>
+    </div>
+
+    <div class="card" onclick="showService('Web Development')">
+      <h3>Web Development</h3>
+      <p>Modern web applications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <h4>OUR NEWS</h4>
+  <h2>Latest Insights</h2>
+
+  <div class="blog-container">
+
+    <!-- Blog 1 -->
+    <div class="blog-card">
+      <img src="blog1.jpg" alt="Cybersecurity">
+      <div class="blog-content">
+        <span>Oct 12, 2023 • Admin</span>
+        <h3>Top 5 Cybersecurity Threats in 2024</h3>
+        <a href="blog2.html">Read More →</a>
+      </div>
+    </div>
+
+    <!-- Blog 2 -->
+    <div class="blog-card">
+      <img src="blog2.webp" alt="Cloud">
+      <div class="blog-content">
+        <span>Oct 05, 2023 • Tech Team</span>
+        <h3>Cloud Migration for Modern Businesses</h3>
+        <a href="blog1.html">Read More →</a>
+      </div>
+    </div>
+
+    <!-- Blog 3 -->
+    <div class="blog-card">
+      <img src="blog3.webp" alt="AI">
+      <div class="blog-content">
+        <span>Sep 28, 2023 • HR</span>
+        <h3>AI & Automation in Business</h3>
+        <a href="blog3.html">Read More →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section reveal">
+  <h2>Contact Us</h2>
+
+  <div class="contact-container">
+
+    <div class="contact-info">
+      <div class="info-box">
+        <h3>📍 Address</h3>
+        <p>Chennai, Tamil Nadu</p>
+      </div>
+
+      <div class="info-box">
+        <h3>📞 Phone</h3>
+        <p>+91 9876543210</p>
+      </div>
+
+      <div class="info-box">
+        <h3>📧 Email</h3>
+        <p>support@stackly.com</p>
+      </div>
+    </div>
+
+    <div class="contact-form-box">
+      <form id="contactForm">
+        <h3>Send Message</h3>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button class="btn">Submit</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Subscribe</h2>
+  <input type="email" id="newsletterEmail" placeholder="Enter Email">
+  <button class="btn" onclick="subscribe()">Sign Up</button>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="social-icons">
+    <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+    <a href="404.html"><i class="fab fa-instagram"></i></a>
+    <a href="404.html"><i class="fab fa-twitter"></i></a>
+    <a href="404.html"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <p>© 2026 STACKLY IT Solutions</p>
+
+</footer>
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

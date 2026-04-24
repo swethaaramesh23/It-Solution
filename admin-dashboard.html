@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>👑 Admin Dashboard</h1>
+
+<h3>Registered Users:</h3>
+<ul id="userList"></ul>
+
+<button onclick="logout()">Logout</button>
+
+<script src="auth.js"></script>
+
+<script>
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let list = document.getElementById("userList");
+
+users.forEach(u => {
+  let li = document.createElement("li");
+  li.innerText = u.name + " (" + u.role + ")";
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>

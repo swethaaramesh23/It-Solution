@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+</head>
+<body>
+
+<h1>👤 User Dashboard</h1>
+<p id="userName"></p>
+
+<button onclick="logout()">Logout</button>
+
+<script src="auth.js"></script>
+
+<script>
+let user = JSON.parse(localStorage.getItem("currentUser"));
+document.getElementById("userName").innerText = "Welcome " + user.name;
+</script>
+
+</body>
+</html>
