@@ -20,11 +20,14 @@
 
 <!-- HEADER -->
 <header class="header">
-<div class="logo">
-  <a href="index.html">
-    <img src="logo.png" alt="STACKLY Logo">
-  </a>
-</div>
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png" alt="STACKLY Logo">
+    </a>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
   <nav>
     <ul class="nav-links">
@@ -37,9 +40,7 @@
     </ul>
   </nav>
 
-  <button id="themeToggle">🌙</button>
 </header>
-
 <main>
   
 <!-- HOME -->
@@ -92,6 +93,10 @@
     digital infrastructure for modern businesses.
   </p>
 
+  <div class="about-image">
+    <img src="about.webp" alt="About Image">
+  </div>
+
   <div class="about-box">
     <h3>Our Vision</h3>
     <p>To make advanced technology accessible to everyone.</p>
@@ -108,6 +113,10 @@
   <p class="service-desc">
     Future-ready solutions designed for performance, scalability, and security.
   </p>
+
+  <div class="services">
+    <img src="service.webp" alt="service Image">
+  </div>
 
   <div class="cards">
     <div class="card" onclick="showService('Cloud Solutions')">
@@ -174,7 +183,12 @@
 
 
 <!-- CONTACT -->
+
 <section id="contact" class="contact-section reveal">
+  
+  
+  <h1 class="contact-subtitle">GET IN TOUCH</h1>
+
   <h2>Contact Us</h2>
 
   <div class="contact-container">
@@ -199,8 +213,8 @@
     <div class="contact-form-box">
       <form id="contactForm">
         <h3>Send Message</h3>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" placeholder="Your Message" required></textarea>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
         <button class="btn">Submit</button>
       </form>
     </div>
