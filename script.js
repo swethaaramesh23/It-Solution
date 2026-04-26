@@ -222,3 +222,40 @@ document.querySelectorAll(".nav-links a").forEach(link => {
     document.querySelector(".nav-links").classList.remove("active");
   });
 });
+
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+function filterJobs(type) {
+  const jobs = document.querySelectorAll(".job-card");
+
+  jobs.forEach(job => {
+    if (type === "all") {
+      job.style.display = "block";
+    } else {
+      job.style.display =
+        job.getAttribute("data-type") === type ? "block" : "none";
+    }
+  });
+}
+
+function openPopup(job) {
+  document.getElementById("applyPopup").style.display = "flex";
+  document.getElementById("jobTitle").innerText = job;
+}
+
+function closePopup() {
+  document.getElementById("applyPopup").style.display = "none";
+}

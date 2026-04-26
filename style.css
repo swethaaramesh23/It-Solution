@@ -53,11 +53,13 @@ body {
 
 /* HERO */
 .hero {
-  height: 100vh;
+  min-height: 100vh;   /* full screen */
   display: flex;
+  flex-direction: column;  /* stack items vertically */
+  justify-content: space-between; /* 🔥 pushes stats to bottom */
   align-items: center;
-  justify-content: center;
   text-align: center;
+  padding-top: 10px;
 
   background: linear-gradient(
       rgba(255,255,255,0.7),
@@ -67,6 +69,10 @@ body {
 
   background-size: cover;
   background-position: center;
+}
+
+.hero-text {
+  margin-top: 80px; /* adjust slightly below navbar */
 }
 
 .hero-text h1 {
@@ -576,4 +582,126 @@ section {
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     text-align: center;
+}
+
+#careers {
+  background: #0b1220; /* same as blog */
+  padding: 60px 20px;
+  color: white;
+}
+
+.career-container h1 {
+  color: #fff;
+  font-size: 36px;
+}
+
+.career-container h2 {
+  color: #00eaff; /* same blue as blog */
+  margin-bottom: 30px;
+}
+.career-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+}
+
+/* Make heading take full width */
+.career-container h1,
+.career-container h2,
+.job-location-note {
+  grid-column: 1 / -1; /* full row */
+  text-align: center;
+}
+
+/* Job cards */
+.job-card {
+  background: white;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.job-location-note {
+  grid-column: 1 / -1;  /* always full width */
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #00eaff;
+}
+
+.quick-links {
+  margin-bottom: 20px;
+}
+
+.quick-links h3 {
+  color: #00eaff;
+  margin-bottom: 10px;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links ul li {
+  display: inline-block;
+  margin: 5px 15px;
+}
+
+.quick-links ul li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.quick-links ul li a:hover {
+  color: #00eaff;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.job-card:hover {
+  transform: translateY(-10px);
+}
+
+.filter-buttons {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  background: #1a2332;
+  color: #00eaff;
+  border: 1px solid #00eaff;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-buttons button:hover {
+  background: #00eaff;
+  color: #000;
+}
+
+.job-card {
+  transition: all 0.4s ease;
 }

@@ -12,7 +12,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
+<!-- APPLY POPUP -->
+<div id="applyPopup" class="popup">
+  <div class="popup-content">
 
+    <span class="close-btn" onclick="closePopup()">×</span>
+
+    <h2>Apply for <span id="jobTitle"></span></h2>
+
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <input type="file" required>
+
+      <button type="submit" class="btn">Submit Application</button>
+    </form>
+
+  </div>
+</div>
 <body>
 
 <!-- Background Animation -->
@@ -34,6 +53,7 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#careers">Careers</a></li>
       <li><a href="#blog">Blogs</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="login.html">Login</a></li>
@@ -49,6 +69,7 @@
     <h1 id="typing"></h1>
 
     <p>
+      We provide Award-Winning IT Services and Solution designed to drive your business into digital future.<br>
       Powering India’s Digital Future with scalable, secure, and modern IT solutions.
     </p>
 
@@ -96,13 +117,14 @@
   <div class="about-image">
     <img src="about.webp" alt="About Image">
   </div>
+  <p><strong>Founded in 2012, Stackly began as a small group of passionate tech enthusiasts aiming to make technology accessible and effective for local business.Over the year we have grown into global IT solution.Stackly is a powerful platform that Workflow, efficiency and drives digital success. Today, we stand proud with hundreds of successful implementations across various industries.</strong></p>
 
   <div class="about-box">
     <h3>Our Vision</h3>
-    <p>To make advanced technology accessible to everyone.</p>
+    <p>We envision a future where technology serves as an enable for creativity and productivity. We focused on smart,scalable and user friendly.</p>
 
     <h3>Our Mission</h3>
-    <p>To build scalable and intelligent digital ecosystems.</p>
+    <p>Is simple -create tools that solve real problem. With a strong focus on innovations,realiavlity and user Satisfaction.</p>
   </div>
 </section>
 
@@ -141,8 +163,91 @@
   </div>
 </section>
 
+<!-- Careers -->
+<section id="careers" class="reveal">
+  
+  <div class="career-container">
+    <h1>WE ARE HIRING</h1>
+    <h2>Job Opportunities!</h2>
+
+<div class="filter-buttons">
+  <button onclick="filterJobs('all')">All</button>
+  <button onclick="filterJobs('wfh')">WFH</button>
+  <button onclick="filterJobs('wfo')">WFO</button>
+  <button onclick="filterJobs('hybrid')">Hybrid</button>
+</div>
+
+
+<div class="job-card" data-type="wfo">
+  <h3>Marketing Executives</h3>
+  <span class="badge">WFO</span>
+
+  <p><strong>Job Description:</strong> Knowledge in Software Line, Must have Excellent English Communication Skills.</p>
+  <p><strong>Qualification:</strong> MBA Graduates</p>
+  <p><strong>Experience:</strong> 1 to 3 Years</p>
+  <button class="apply-btn" onclick="openPopup('Web Developer')">
+  Apply Now
+</button>
+</div>
+
+<div class="job-card" data-type="wfh">
+  <h3>Web Developer</h3>
+  <span class="badge">WFH</span>
+
+  <p><strong>Job Description:</strong> Strong knowledge of HTML5, CSS3, Bootstrap and JavaScript.</p>
+  <p><strong>Qualification:</strong> Any Degree</p>
+  <p><strong>Experience:</strong> 0 to 2 Years</p>
+  <button class="apply-btn" onclick="openPopup('Web Developer')">
+  Apply Now
+</button>
+</div>
+
+<div class="job-card" data-type="hybrid">
+  <h3>Android Developer</h3>
+  <span class="badge">Hybrid</span>
+
+  <p><strong>Job Description:</strong> Strong knowledge of design and programming in Java and familiarity with Android Studio.</p>
+  <p><strong>Qualification:</strong> Any Degree</p>
+  <p><strong>Experience:</strong> 0 to 2 Years</p>
+  <button class="apply-btn" onclick="openPopup('Web Developer')">
+  Apply Now
+</button>
+</div>
+
+<div class="job-card" data-type="wfh">
+  <h3>PHP Developer</h3>
+  <span class="badge">WFH</span>
+
+  <p><strong>Job Description:</strong> Strong knowledge of HTML5, CSS3, Bootstrap, JavaScript, PHP, Database, AJAX.</p>
+  <p><strong>Qualification:</strong> Any Degree</p>
+  <p><strong>Experience:</strong> 0 to 2 Years</p>
+  <button class="apply-btn" onclick="openPopup('Web Developer')">
+  Apply Now
+</button>
+</div>
+
+<div class="job-card" data-type="hybrid">
+  <h3>App Developer</h3>
+  <span class="badge">Hybrid</span>
+
+  <p><strong>Job Description:</strong> Strong knowledge of HTML5, CSS3, Bootstrap, JavaScript, PHP, Database, AJAX.</p>
+  <p><strong>Qualification:</strong> Any Degree</p>
+  <p><strong>Experience:</strong> 0 to 2 Years</p>
+  <button class="apply-btn" onclick="openPopup('Web Developer')">
+  Apply Now
+</button>
+</div>
+
+<!-- ✅ LOCATION -->
+<p class="job-location-note">
+   Job Location: WFH / WFO / Hybrid (Applicable to all positions)
+</p>
+      
+  </div>
+</section>
+
 <!-- BLOG -->
-<section class="blog" id="blog">
+<section class="blog reveal" id="blog">
   <h4>OUR NEWS</h4>
   <h2>Latest Insights</h2>
 
@@ -231,9 +336,22 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
 
+  <!-- ✅ Quick Links -->
+  <div class="quick-links">
+    <h3>Quick Links</h3>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#blog">Blogs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Social Icons -->
   <div class="social-icons">
     <a href="404.html"><i class="fab fa-facebook-f"></i></a>
     <a href="404.html"><i class="fab fa-instagram"></i></a>
