@@ -3,90 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STACKLY Blogs</title>
-
-  <!-- CSS -->
+  <title>Blog - STACKLY</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
 
-<!-- HEADER -->
 <header class="header">
-  <h2>STACKLY</h2>
-
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.webp" alt="STACKLY Logo">
+    </a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <nav>
     <ul class="nav-links">
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Service</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-
-<!-- BLOG SECTION -->
+<!-- BLOG SECTION - 3 BOXES IN SINGLE LINE -->
 <section class="blog-section">
-  <h2 class="section-title">All Blogs</h2>
-
+  <h1>OUR NEWS</h1>
+  <h2>Latest Insights</h2>
+  
   <div class="blog-container">
-
-    <!-- BLOG 1 -->
+    <!-- Blog Card 1 -->
     <div class="blog-card">
-      <img src="img1/blog1.jpg" alt="Cloud computing">
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=200&fit=crop" alt="Cybersecurity" class="blog-image">
       <div class="blog-content">
-        <h3>Future of Cloud Computing</h3>
-        <p>Explore how cloud is transforming businesses worldwide.</p>
-        <a href="blog-details.html" class="read-more">Read More</a>
+        <div class="blog-meta">Oct 12, 2023 • Admin</div>
+        <h3>Top 5 Cybersecurity Threats in 2024</h3>
+        <p>Discover the emerging attack vectors and how to safeguard your digital ecosystem from evolving cyber threats.</p>
+        <a href="blog-details.html?id=1" class="read-more">Read More →</a>
       </div>
     </div>
-
-    <!-- BLOG 2 -->
+    
+    <!-- Blog Card 2 -->
     <div class="blog-card">
-      <img src="img1/blog2.jpg" alt="Cyber security">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=200&fit=crop" alt="Cloud Migration" class="blog-image">
       <div class="blog-content">
-        <h3>Cybersecurity in 2026</h3>
-        <p>Latest trends and strategies to protect digital assets.</p>
-        <a href="blog-details.html" class="read-more">Read More</a>
+        <div class="blog-meta">Oct 05, 2023 • Tech Team</div>
+        <h3>Cloud Migration for Modern Businesses</h3>
+        <p>Strategic frameworks to reduce costs, improve scalability, and ensure data resilience in the cloud era.</p>
+        <a href="blog-details.html?id=2" class="read-more">Read More →</a>
       </div>
     </div>
-
-    <!-- BLOG 3 -->
+    
+    <!-- Blog Card 3 -->
     <div class="blog-card">
-      <img src="img1/blog3.jpg" alt="AI automation">
+      <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=200&fit=crop" alt="AI Automation" class="blog-image">
       <div class="blog-content">
-        <h3>AI & Automation</h3>
-        <p>Discover how AI is reshaping industries globally.</p>
-        <a href="blog-details.html" class="read-more">Read More</a>
+        <div class="blog-meta">Sep 28, 2023 • HR</div>
+        <h3>AI & Automation in Business</h3>
+        <p>How AI reshapes workflows, talent acquisition, and delivers exceptional customer experiences.</p>
+        <a href="blog-details.html?id=3" class="read-more">Read More →</a>
       </div>
     </div>
-
   </div>
 </section>
 
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-
-  <div class="social-icons">
-    <a href="404.html"><i class="fab fa-facebook-f"></i></a>
-    <a href="404.html"><i class="fab fa-instagram"></i></a>
-    <a href="404.html"><i class="fab fa-twitter"></i></a>
-    <a href="404.html"><i class="fab fa-youtube"></i></a>
+<!-- POPUP FOR BLOG (optional) -->
+<div id="blogPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closeBlogPopup()">×</span>
+    <h2 id="blogTitle"></h2>
+    <p id="blogContent"></p>
   </div>
-
-  <p>© 2026 STACKLY IT Solutions</p>
-
-</footer>
+</div>
 
 <script src="script.js"></script>
+
+<footer class="footer">
+  <div class="quick-links">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <p>&copy; 2024 STACKLY. All rights reserved.</p>
+</footer>
 
 </body>
 </html>

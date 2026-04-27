@@ -19,17 +19,22 @@ if (typingEl) {
 }
 
 // =======================
-// 2. SCROLL ANIMATION
+// 2. SCROLL REVEAL
 // =======================
-const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
 
-window.addEventListener("scroll", () => {
-  reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+  reveals.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
       el.classList.add("active");
     }
   });
-});
+}
+
+window.addEventListener("scroll", revealOnScroll);
 
 // =======================
 // 3. REGISTER
@@ -40,14 +45,10 @@ if (regForm) {
   regForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-
     const user = {
-      name: nameInput.value,
-      email: emailInput.value,
-      password: passwordInput.value
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
     };
 
     localStorage.setItem("user", JSON.stringify(user));
@@ -65,16 +66,12 @@ if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    if (
-      user &&
-      emailInput.value === user.email &&
-      passwordInput.value === user.password
-    ) {
+    if (user && email === user.email && password === user.password) {
       localStorage.setItem("login", "true");
       window.location.href = "dashboard.html";
     } else {
@@ -112,11 +109,8 @@ function logout() {
 // =======================
 function scrollToSection(id) {
   const section = document.getElementById(id);
-
   if (section) {
-    section.scrollIntoView({
-      behavior: "smooth"
-    });
+    section.scrollIntoView({ behavior: "smooth" });
   }
 }
 
@@ -129,15 +123,11 @@ if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const email = document.querySelector("input[type='email']").value.trim();
+    const message = document.querySelector("textarea").value.trim();
 
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-    if (email === "" || message === "") {
+    if (!email || !message) {
       alert("Please fill all fields");
-    } else if (!email.match(emailPattern)) {
-      alert("Enter valid email");
     } else {
       alert("Message sent successfully!");
       contactForm.reset();
@@ -151,12 +141,8 @@ if (contactForm) {
 function subscribe() {
   const email = document.getElementById("newsletterEmail").value.trim();
 
-  const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
   if (!email) {
     alert("Please enter email");
-  } else if (!pattern.test(email)) {
-    alert("Enter valid email");
   } else {
     alert("Subscribed successfully!");
   }
@@ -166,96 +152,255 @@ function subscribe() {
 // 10. SERVICE CLICK
 // =======================
 function showService(serviceName) {
-  alert(serviceName + " service selected!");
+  alert("You clicked on " + serviceName);
 }
 
 // =======================
-// 11. THEME TOGGLE
+// 11. MOBILE MENU
 // =======================
-const themeBtn = document.getElementById("themeToggle");
-
-if (themeBtn) {
-  // Load saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    themeBtn.innerText = "☀️";
-  }
-
-  themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    const isDark = document.body.classList.contains("dark");
-    themeBtn.innerText = isDark ? "☀️" : "🌙";
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-}
-
-// =======================
-// 12. BLOG CARD ANIMATION
-// =======================
-const cards = document.querySelectorAll('.blog-card');
-
-cards.forEach(card => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(50px)";
-  card.style.transition = "all 0.6s ease";
-});
-
-window.addEventListener('scroll', () => {
-  cards.forEach(card => {
-    const cardTop = card.getBoundingClientRect().top;
-
-    if (cardTop < window.innerHeight - 100) {
-      card.style.opacity = "1";
-      card.style.transform = "translateY(0)";
-    }
-  });
-});
-
 function toggleMenu() {
   document.querySelector(".nav-links").classList.toggle("active");
 }
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.querySelector(".nav-links").classList.remove("active");
-  });
+// =======================
+// 12. CAREERS PAGE FILTER FUNCTIONALITY (UPDATED)
+// =======================
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all filter buttons
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  // Get all job cards
+  const jobCards = document.querySelectorAll('.job-card');
+  // Get no results message
+  const noResultsDiv = document.getElementById('noResults');
+  
+  // Debug: Log how many jobs found
+  console.log('Total job cards found:', jobCards.length);
+  
+  // Function to update job visibility
+  function filterJobs(filterValue) {
+    let visibleCount = 0;
+    let wfoCount = 0;
+    let wfhCount = 0;
+    let hybridCount = 0;
+    
+    jobCards.forEach(card => {
+      const jobType = card.getAttribute('data-job-type');
+      
+      // Debug: Log each job type
+      console.log('Job type:', jobType);
+      
+      if (filterValue === 'all') {
+        card.classList.remove('hide');
+        visibleCount++;
+      } else if (jobType === filterValue) {
+        card.classList.remove('hide');
+        visibleCount++;
+        
+        // Count by type for debugging
+        if (jobType === 'wfo') wfoCount++;
+        if (jobType === 'wfh') wfhCount++;
+        if (jobType === 'hybrid') hybridCount++;
+      } else {
+        card.classList.add('hide');
+      }
+    });
+    
+    // Debug: Log counts
+    console.log(`Filter: ${filterValue}, Visible: ${visibleCount}`);
+    console.log(`WFO count: ${wfoCount}, WFH count: ${wfhCount}, Hybrid count: ${hybridCount}`);
+    
+    // Show or hide no results message
+    if (noResultsDiv) {
+      if (visibleCount === 0) {
+        noResultsDiv.classList.add('show');
+      } else {
+        noResultsDiv.classList.remove('show');
+      }
+    }
+    
+    return visibleCount;
+  }
+  
+  // If filter buttons exist, add click event listeners
+  if (filterButtons.length > 0) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Get filter value
+        const filterValue = this.getAttribute('data-filter');
+        
+        // Filter jobs
+        filterJobs(filterValue);
+      });
+    });
+  }
+  
+  // Initial filter to show all jobs
+  filterJobs('all');
 });
 
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal");
-
-  reveals.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 100) {
-      el.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-
-function filterJobs(type) {
-  const jobs = document.querySelectorAll(".job-card");
-
-  jobs.forEach(job => {
-    if (type === "all") {
-      job.style.display = "block";
-    } else {
-      job.style.display =
-        job.getAttribute("data-type") === type ? "block" : "none";
-    }
-  });
-}
-
-function openPopup(job) {
-  document.getElementById("applyPopup").style.display = "flex";
-  document.getElementById("jobTitle").innerText = job;
+// =======================
+// 13. APPLY BUTTON POPUP FUNCTIONALITY
+// =======================
+function openPopup(jobTitle) {
+  const popup = document.getElementById('applyPopup');
+  const jobTitleSpan = document.getElementById('jobTitle');
+  
+  if (popup && jobTitleSpan) {
+    jobTitleSpan.textContent = jobTitle;
+    popup.style.display = 'flex';
+  }
 }
 
 function closePopup() {
-  document.getElementById("applyPopup").style.display = "none";
+  const popup = document.getElementById('applyPopup');
+  if (popup) {
+    popup.style.display = 'none';
+  }
 }
+
+// Add click event to all apply buttons
+document.addEventListener('DOMContentLoaded', function() {
+  const applyButtons = document.querySelectorAll('.apply-btn');
+  
+  console.log('Apply buttons found:', applyButtons.length);
+  
+  applyButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const jobCard = this.closest('.job-card');
+      const jobTitle = jobCard.querySelector('h3')?.innerText || 'this position';
+      
+      console.log('Apply clicked for:', jobTitle);
+      
+      // Find popup and open it
+      const popup = document.getElementById('applyPopup');
+      const jobTitleSpan = document.getElementById('jobTitle');
+      
+      if (popup && jobTitleSpan) {
+        jobTitleSpan.textContent = jobTitle;
+        popup.style.display = 'flex';
+      } else {
+        alert(`Application form for ${jobTitle} will open soon!`);
+      }
+    });
+  });
+  
+  // Close popup when clicking outside
+  const popup = document.getElementById('applyPopup');
+  if (popup) {
+    popup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+  }
+});
+
+// =======================
+// 14. POPUP FORM SUBMIT
+// =======================
+document.addEventListener('DOMContentLoaded', function() {
+  const popupForm = document.querySelector('#applyPopup form');
+  
+  if (popupForm) {
+    popupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = this.querySelector('input[placeholder="Your Name"]')?.value;
+      const email = this.querySelector('input[placeholder="Your Email"]')?.value;
+      const phone = this.querySelector('input[placeholder="Phone Number"]')?.value;
+      const file = this.querySelector('input[type="file"]')?.files[0];
+      
+      if (!name || !email || !phone || !file) {
+        alert('Please fill all fields and upload your resume');
+        return;
+      }
+      
+      alert('Application submitted successfully! We will contact you soon.');
+      this.reset();
+      closePopup();
+    });
+  }
+});
+
+// =======================
+// 15. BLOG POPUP FUNCTIONALITY
+// =======================
+function openBlogPopup(title, content) {
+  const popup = document.getElementById('blogPopup');
+  const titleSpan = document.getElementById('blogTitle');
+  const contentPara = document.getElementById('blogContent');
+  
+  if (popup && titleSpan && contentPara) {
+    titleSpan.textContent = title;
+    contentPara.textContent = content;
+    popup.style.display = 'flex';
+  }
+}
+
+function closeBlogPopup() {
+  const popup = document.getElementById('blogPopup');
+  if (popup) {
+    popup.style.display = 'none';
+  }
+}
+
+// Add click event to read more links
+document.addEventListener('DOMContentLoaded', function() {
+  const readMoreLinks = document.querySelectorAll('.read-more');
+  
+  // Blog data
+  const blogData = {
+    1: {
+      title: "Top 5 Cybersecurity Threats in 2024",
+      content: "In 2024, organizations face unprecedented cybersecurity challenges including AI-powered attacks, ransomware evolution, supply chain vulnerabilities, cloud misconfigurations, and IoT security gaps. Stay protected with proactive measures and continuous monitoring."
+    },
+    2: {
+      title: "Cloud Migration for Modern Businesses",
+      content: "Cloud migration offers scalability, cost efficiency, and enhanced security. Learn best practices for seamless transition including assessment, planning, execution, and optimization strategies for your business."
+    },
+    3: {
+      title: "AI & Automation in Business",
+      content: "Artificial intelligence is revolutionizing business operations. From customer service chatbots to predictive analytics, discover how AI and automation drive efficiency, reduce costs, and create competitive advantages."
+    }
+  };
+  
+  readMoreLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Get blog card
+      const blogCard = this.closest('.blog-card');
+      const title = blogCard.querySelector('h3')?.innerText;
+      const description = blogCard.querySelector('p')?.innerText;
+      
+      // Open popup
+      const popup = document.getElementById('blogPopup');
+      const titleSpan = document.getElementById('blogTitle');
+      const contentPara = document.getElementById('blogContent');
+      
+      if (popup && titleSpan && contentPara) {
+        titleSpan.textContent = title;
+        contentPara.textContent = description + " For more details, visit our full blog post.";
+        popup.style.display = 'flex';
+      }
+    });
+  });
+  
+  // Close popup when clicking outside
+  const popup = document.getElementById('blogPopup');
+  if (popup) {
+    popup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeBlogPopup();
+      }
+    });
+  }
+});

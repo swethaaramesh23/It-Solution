@@ -155,3 +155,21 @@ p {
     border-radius: 30px;
   }
 }
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #00eaff;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: white;
+  transform: scale(1.2);
+}

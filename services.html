@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - STACKLY</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<header class="header">
+   <div class="logo">
+    <a href="index.html">
+      <img src="logo.webp" alt="STACKLY Logo">
+    </a>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Service</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<body>
+<section class="section services-section">
+
+  <h2>Our Services</h2>
+
+  <p class="service-desc">
+    An effective IT service page design sho.uld prioritize a user-friendly layout that immediately highlights solutions, benefits, and credibility.Future-ready solutions designed for performance, scalability, and security.
+  </p>
+
+  <!-- Service Image -->
+  <div class="service-image">
+  <img src="service.webp" alt="Service Image">
+</div>
+
+  <!-- Service Cards -->
+  <div class="cards">
+
+    <div class="card" onclick="showService('Cloud Solutions')">
+      <h3>Cloud Solutions</h3>
+      <p>As enterprises scale digital platforms,AI workloads, and cloud connected infrastructure, traditional data centers start to show limit. It support High denity Architecture, Advanced cooloing Infratructure, Availability & SLA, Security & compliance. Scalable cloud infrastructure.</p>
+    </div>
+
+    <div class="card" onclick="showService('AI & Data Analytics')">
+      <h3>AI & Data Analytics</h3>
+      <p>Ai enables systems to perform tasks that typically require human cognitive abilities such as kearning, problem-solving, and decision making.Transform data into insights.</p>
+    </div>
+
+    <div class="card" onclick="showService('Cyber Security')">
+      <h3>Cyber Security</h3>
+      <p>Cybersecurity is the practice of protecting systems, networks, programs, and data from digital attacks, unauthorized access, and damage. It involves using technology, processes, and trained personnel to ensure confidentiality, integrity, and availability of information, reducing risks of theft or extortion.Advanced protection systems.</p>
+    </div>
+
+    <div class="card" onclick="showService('Web Development')">
+      <h3>Web Development</h3>
+      <p>Web apps are responsive websites that function like mobile apps but are accessed via browseers.Modern web applications.</p>
+    </div>
+
+  </div>
+
+</section>
+<script src="script.js"></script>
+</body>
+</html>
