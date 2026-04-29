@@ -60,6 +60,9 @@ body {
   color: #f97316;
   background: none;
   border: none;
+  margin-left: auto;
+  position: relative;
+  right: 0;
 }
 
 /* NAV LINKS */
@@ -115,7 +118,7 @@ body {
   .nav-links li {
     padding: 12px 5%;
     border-bottom: 1px solid #eee;
-    text-align: center;
+    text-align: left;
   }
 
   .nav-links li:last-child {
