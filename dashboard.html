@@ -1,21 +1,659 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Dashboard</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - STACKLY</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Dashboard Specific Styles */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Welcome Card */
+    .welcome-card {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(249,115,22,0.3);
+    }
+
+    .welcome-card h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .welcome-card p {
+      opacity: 0.9;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(249,115,22,0.15);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: bold;
+      color: #f97316;
+    }
+
+    .stat-label {
+      color: #666;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Tasks Section */
+    .tasks-section {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tasks-section h3 {
+      color: #1a1f2c;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f97316;
+      font-size: 20px;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      background: #e9ecef;
+      border-radius: 10px;
+      height: 25px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #f97316, #ea580c);
+      height: 100%;
+      transition: width 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Task Item */
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .task-item:hover {
+      background: #f8f9fa;
+    }
+
+    .task-info {
+      flex: 1;
+    }
+
+    .task-title {
+      font-weight: 600;
+      color: #1a1f2c;
+      font-size: 16px;
+    }
+
+    .task-date {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .task-status {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-completed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    /* Task Actions */
+    .task-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-complete {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-complete:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
+
+    .btn-delete {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-delete:hover {
+      background: #c82333;
+      transform: scale(1.05);
+    }
+
+    /* Add Task Form */
+    .add-task-form {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .add-task-form h4 {
+      margin-bottom: 15px;
+      color: #1a1f2c;
+    }
+
+    .add-task-form input,
+    .add-task-form select {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .add-task-form input {
+      width: 40%;
+    }
+
+    .add-task-form button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .add-task-form button:hover {
+      background: #218838;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .quick-btn {
+      background: #f97316;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .quick-btn:hover {
+      background: #ea580c;
+      transform: translateY(-2px);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+
+    /* Recent Activity */
+    .activity-item {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .activity-text {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .activity-time {
+      font-size: 11px;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .add-task-form input {
+        width: 100%;
+        margin: 5px 0;
+      }
+      
+      .task-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .welcome-card h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header class="header">
-  <h2>Dashboard</h2>
-  <button onclick="logout()" class="btn">Logout</button>
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.webp" alt="STACKLY Logo">
+    </a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
 </header>
 
-<section class="section">
-  <h2>Welcome</h2>
-  <p id="userInfo"></p>
-</section>
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <div class="welcome-card">
+    <h1 id="welcomeUser">Welcome back!</h1>
+    <p>Track your progress, manage tasks, and achieve your goals!</p>
+  </div>
 
-<script src="script.js"></script>
+  <!-- Statistics -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number" id="totalTasks">0</div>
+      <div class="stat-label">Total Tasks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="completedTasks">0</div>
+      <div class="stat-label">Completed Tasks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="pendingTasks">0</div>
+      <div class="stat-label">Pending Tasks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="completionRate">0%</div>
+      <div class="stat-label">Completion Rate</div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="tasks-section">
+    <h3>📊 Overall Progress</h3>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+  </div>
+
+  <!-- Tasks List -->
+  <div class="tasks-section">
+    <h3>📋 My Tasks</h3>
+    <div id="tasksList"></div>
+    
+    <!-- Add Task Form -->
+    <div class="add-task-form">
+      <h4>➕ Add New Task</h4>
+      <input type="text" id="newTaskTitle" placeholder="Task title">
+      <select id="newTaskPriority">
+        <option value="Low">Low Priority</option>
+        <option value="Medium">Medium Priority</option>
+        <option value="High">High Priority</option>
+      </select>
+      <input type="date" id="newTaskDate">
+      <button onclick="addTask()">Add Task</button>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="tasks-section">
+    <h3>🕒 Recent Activity</h3>
+    <div id="recentActivity"></div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <button class="quick-btn" onclick="exportReport()">📊 Export Report</button>
+    <button class="quick-btn" onclick="clearCompleted()">🗑️ Clear Completed</button>
+    <button class="quick-btn" onclick="showAnalytics()">📈 View Analytics</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="quick-links">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <p>&copy; 2026 STACKLY IT Solutions. All rights reserved.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+  // =======================
+  // DASHBOARD FUNCTIONS
+  // =======================
+  
+  let currentUser = null;
+  let userTasks = [];
+
+  // Load Dashboard
+  function loadDashboard() {
+    currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    
+    if (!currentUser) {
+      window.location.href = "login.html";
+      return;
+    }
+    
+    document.getElementById("welcomeUser").innerHTML = "Welcome back, " + currentUser.name + "! 👋";
+    loadUserTasks();
+    updateStatistics();
+    loadRecentActivity();
+  }
+
+  // Load User Tasks
+  function loadUserTasks() {
+    let allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+    userTasks = allTasks.filter(task => task.userEmail === currentUser.email);
+    displayTasks();
+  }
+
+  // Display Tasks
+  function displayTasks() {
+    const tasksList = document.getElementById("tasksList");
+    
+    if (userTasks.length === 0) {
+      tasksList.innerHTML = '<div class="empty-state">✨ No tasks yet. Add your first task above!</div>';
+      return;
+    }
+    
+    tasksList.innerHTML = "";
+    
+    userTasks.forEach((task, index) => {
+      const taskDiv = document.createElement("div");
+      taskDiv.className = "task-item";
+      
+      let statusClass = task.status === "completed" ? "status-completed" : "status-pending";
+      let statusText = task.status === "completed" ? "✓ Completed" : "⏳ Pending";
+      let priorityColor = task.priority === "High" ? "🔴" : task.priority === "Medium" ? "🟡" : "🟢";
+      
+      taskDiv.innerHTML = `
+        <div class="task-info">
+          <div class="task-title">${priorityColor} ${task.title}</div>
+          <div class="task-date">Priority: ${task.priority} | Due: ${task.dueDate || 'No date'}</div>
+        </div>
+        <div class="task-status ${statusClass}">${statusText}</div>
+        <div class="task-actions">
+          ${task.status !== 'completed' ? `<button class="btn-complete" onclick="markComplete(${index})">Complete</button>` : ''}
+          <button class="btn-delete" onclick="deleteTask(${index})">Delete</button>
+        </div>
+      `;
+      
+      tasksList.appendChild(taskDiv);
+    });
+  }
+
+  // Add Task
+  function addTask() {
+    const title = document.getElementById("newTaskTitle").value.trim();
+    const priority = document.getElementById("newTaskPriority").value;
+    const dueDate = document.getElementById("newTaskDate").value;
+    
+    if (!title) {
+      alert("Please enter task title");
+      return;
+    }
+    
+    const newTask = {
+      userEmail: currentUser.email,
+      title: title,
+      priority: priority,
+      dueDate: dueDate,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+    
+    let allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+    allTasks.push(newTask);
+    localStorage.setItem("userTasks", JSON.stringify(allTasks));
+    
+    addActivity("Added new task: " + title);
+    
+    document.getElementById("newTaskTitle").value = "";
+    document.getElementById("newTaskDate").value = "";
+    
+    loadUserTasks();
+    updateStatistics();
+  }
+
+  // Mark Complete
+  function markComplete(index) {
+    let allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+    const taskIndex = allTasks.findIndex(t => t.userEmail === currentUser.email && t.title === userTasks[index].title && t.createdAt === userTasks[index].createdAt);
+    
+    if (taskIndex !== -1) {
+      allTasks[taskIndex].status = "completed";
+      localStorage.setItem("userTasks", JSON.stringify(allTasks));
+      addActivity("Completed task: " + userTasks[index].title);
+      loadUserTasks();
+      updateStatistics();
+    }
+  }
+
+  // Delete Task
+  function deleteTask(index) {
+    if (confirm("Delete task '" + userTasks[index].title + "'?")) {
+      let allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+      const taskIndex = allTasks.findIndex(t => t.userEmail === currentUser.email && t.title === userTasks[index].title && t.createdAt === userTasks[index].createdAt);
+      
+      if (taskIndex !== -1) {
+        allTasks.splice(taskIndex, 1);
+        localStorage.setItem("userTasks", JSON.stringify(allTasks));
+        addActivity("Deleted task: " + userTasks[index].title);
+        loadUserTasks();
+        updateStatistics();
+      }
+    }
+  }
+
+  // Update Statistics
+  function updateStatistics() {
+    const total = userTasks.length;
+    const completed = userTasks.filter(t => t.status === "completed").length;
+    const pending = total - completed;
+    const completionRate = total === 0 ? 0 : Math.round((completed / total) * 100);
+    
+    document.getElementById("totalTasks").innerText = total;
+    document.getElementById("completedTasks").innerText = completed;
+    document.getElementById("pendingTasks").innerText = pending;
+    document.getElementById("completionRate").innerText = completionRate + "%";
+    
+    const progressBar = document.getElementById("progressBar");
+    progressBar.style.width = completionRate + "%";
+    progressBar.innerText = completionRate + "%";
+  }
+
+  // Add Activity
+  function addActivity(activity) {
+    let activities = JSON.parse(localStorage.getItem("userActivities")) || [];
+    activities.unshift({
+      userEmail: currentUser.email,
+      activity: activity,
+      timestamp: new Date().toLocaleString()
+    });
+    
+    if (activities.length > 20) activities.pop();
+    localStorage.setItem("userActivities", JSON.stringify(activities));
+    loadRecentActivity();
+  }
+
+  // Load Recent Activity
+  function loadRecentActivity() {
+    let activities = JSON.parse(localStorage.getItem("userActivities")) || [];
+    const userActivities = activities.filter(a => a.userEmail === currentUser.email);
+    const recentDiv = document.getElementById("recentActivity");
+    
+    if (userActivities.length === 0) {
+      recentDiv.innerHTML = '<div class="empty-state">No recent activity</div>';
+      return;
+    }
+    
+    recentDiv.innerHTML = "";
+    userActivities.slice(0, 10).forEach(activity => {
+      const activityDiv = document.createElement("div");
+      activityDiv.className = "activity-item";
+      activityDiv.innerHTML = `
+        <div class="activity-text">${activity.activity}</div>
+        <div class="activity-time">${activity.timestamp}</div>
+      `;
+      recentDiv.appendChild(activityDiv);
+    });
+  }
+
+  // Export Report
+  function exportReport() {
+    const completed = userTasks.filter(t => t.status === "completed").length;
+    const rate = userTasks.length === 0 ? 0 : Math.round((completed / userTasks.length) * 100);
+    
+    let report = "STACKLY TASK REPORT\n";
+    report += "==================\n";
+    report += "User: " + currentUser.name + "\n";
+    report += "Email: " + currentUser.email + "\n";
+    report += "Date: " + new Date().toLocaleString() + "\n\n";
+    report += "Statistics:\n";
+    report += "Total Tasks: " + userTasks.length + "\n";
+    report += "Completed: " + completed + "\n";
+    report += "Pending: " + (userTasks.length - completed) + "\n";
+    report += "Completion Rate: " + rate + "%\n\n";
+    report += "Task Details:\n";
+    
+    userTasks.forEach(t => {
+      report += "- " + t.title + " (" + t.status + ")\n";
+    });
+    
+    const blob = new Blob([report], {type: "text/plain"});
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "report_" + currentUser.name + "_" + Date.now() + ".txt";
+    link.click();
+    
+    alert("Report downloaded successfully!");
+  }
+
+  // Clear Completed Tasks
+  function clearCompleted() {
+    if (confirm("Clear all completed tasks?")) {
+      let allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+      allTasks = allTasks.filter(t => !(t.userEmail === currentUser.email && t.status === "completed"));
+      localStorage.setItem("userTasks", JSON.stringify(allTasks));
+      addActivity("Cleared all completed tasks");
+      loadUserTasks();
+      updateStatistics();
+    }
+  }
+
+  // Show Analytics
+  function showAnalytics() {
+    const completed = userTasks.filter(t => t.status === "completed").length;
+    const pending = userTasks.length - completed;
+    const rate = userTasks.length === 0 ? 0 : Math.round((completed / userTasks.length) * 100);
+    
+    alert("📈 Your Analytics:\n\n" +
+          "✅ Completed: " + completed + "\n" +
+          "⏳ Pending: " + pending + "\n" +
+          "📊 Completion Rate: " + rate + "%\n" +
+          "📝 Total Tasks: " + userTasks.length);
+  }
+
+  // Toggle Menu
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+      navLinks.classList.toggle('active');
+    }
+  }
+
+  // Initialize Dashboard
+  document.addEventListener("DOMContentLoaded", loadDashboard);
+</script>
+
 </body>
 </html>

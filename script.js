@@ -404,3 +404,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+// =======================
+// SHOW SERVICE FUNCTION
+// =======================
+function showService(serviceName) {
+  alert("You clicked on " + serviceName + " service!");
+}
+
+// =======================
+// SUBSCRIBE FUNCTION
+// =======================
+function subscribe() {
+  const email = document.getElementById("newsletterEmail").value.trim();
+  if (!email) {
+    alert("Please enter your email address");
+  } else if (!email.includes('@') || !email.includes('.')) {
+    alert("Please enter a valid email address");
+  } else {
+    alert("Subscribed successfully! ✅");
+    document.getElementById("newsletterEmail").value = "";
+  }
+}
+
+// =======================
+// TOGGLE MENU FUNCTION
+// =======================
+function toggleMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks) {
+    navLinks.classList.toggle('active');
+  }
+}

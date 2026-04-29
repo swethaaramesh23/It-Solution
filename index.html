@@ -48,81 +48,171 @@
 <!-- HOME -->
 <section class="hero">
   <div class="hero-text">
-    <h1 id="typing">
-  Welcome to STACKLY <br>
-  
-</h1>
-
+    <h1 id="typing">Welcome to STACKLY</h1>
     <p>
       We provide Award-Winning IT Services and Solution designed to drive your business into digital future.
     </p>
-
     <a href="services.html" class="btn glow-btn">
-      Explore Services
+      Explore Services <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 </section>
 
-<!-- STATS (Optional but Recommended) -->
+<!-- SERVICES PREVIEW SECTION - ADD THIS -->
+<section class="services-preview">
+  <div class="container">
+    <h2>Our <span>Services</span></h2>
+    <p class="section-subtitle">Comprehensive IT solutions for your business</p>
+    
+    <div class="services-grid">
+      <div class="service-card" onclick="showService('Web Development')">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Modern, responsive websites and web applications</p>
+      </div>
+      
+      <div class="service-card" onclick="showService('Mobile Apps')">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Mobile Apps</h3>
+        <p>iOS and Android native and cross-platform apps</p>
+      </div>
+      
+      <div class="service-card" onclick="showService('Cloud Solutions')">
+        <i class="fas fa-cloud"></i>
+        <h3>Cloud Solutions</h3>
+        <p>AWS, Azure, and Google Cloud integration</p>
+      </div>
+      
+      <div class="service-card" onclick="showService('Cybersecurity')">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Cybersecurity</h3>
+        <p>Protect your business from digital threats</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS Section -->
 <section class="stats">
   <div class="stats-container">
-
     <div class="stat-box">
       <h2>700+</h2>
       <p>Projects Completed</p>
     </div>
-
     <div class="stat-box">
       <h2>150+</h2>
       <p>IT Experts</p>
     </div>
-
     <div class="stat-box">
       <h2>95%</h2>
       <p>Client Satisfaction</p>
     </div>
-
     <div class="stat-box">
       <h2>12+</h2>
       <p>Years Experience</p>
     </div>
+  </div>
+</section>
 
+<!-- WHY CHOOSE US SECTION - ADD THIS -->
+<section class="why-choose-us">
+  <div class="container">
+    <h2>Why Choose <span>STACKLY</span>?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <i class="fas fa-rocket"></i>
+        <h3>Fast Delivery</h3>
+        <p>Quick turnaround time without compromising quality</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-headset"></i>
+        <h3>24/7 Support</h3>
+        <p>Round-the-clock technical assistance</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-certificate"></i>
+        <h3>Certified Experts</h3>
+        <p>Industry certified professionals</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Best Price</h3>
+        <p>Competitive pricing with high quality</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION - ADD THIS -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our <span>Clients Say</span></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>"STACKLY delivered an amazing product. Their team is professional and highly skilled."</p>
+        <h4>- John Smith</h4>
+        <span>CEO, TechCorp</span>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>"The best IT partner we've worked with. They understand our needs perfectly."</p>
+        <h4>- Sarah Johnson</h4>
+        <span>CTO, InnovateHub</span>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>"Outstanding service and support. Highly recommend STACKLY for any IT project."</p>
+        <h4>- Mike Williams</h4>
+        <span>Director, GrowthLabs</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
 <section class="newsletter">
-  <h2>Subscribe</h2>
-  <input type="email" id="newsletterEmail" placeholder="Enter Email">
-  <button class="btn" onclick="subscribe()">Sign Up</button>
+  <h2>Subscribe to Our Newsletter</h2>
+  <p>Get the latest updates on technology and offers</p>
+  <input type="email" id="newsletterEmail" placeholder="Enter your email">
+  <button class="btn" onclick="subscribe()">Subscribe</button>
 </section>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="footer">
-
- <div class="quick-links">
-  <h3>Quick Links</h3>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="careers.html">Careers</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</div>
-
-  <!-- Social Icons -->
- <div class="social-icons">
-  <a href="404.html"><i class="fab fa-facebook-f"></i></a>
-  <a href="404.html"><i class="fab fa-instagram"></i></a>
-  <a href="404.html"><i class="fab fa-twitter"></i></a>
-  <a href="404.html"><i class="fab fa-youtube"></i></a>
-</div>
-
-  <p>© 2026 STACKLY IT Solutions</p>
-
+  <div class="footer-content">
+    <div class="quick-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-contact">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-envelope"></i> info@stackly.com</p>
+      <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+    </div>
+    
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+      <a href="404.html"><i class="fab fa-instagram"></i></a>
+      <a href="404.html"><i class="fab fa-twitter"></i></a>
+      <a href="404.html"><i class="fab fa-youtube"></i></a>
+      <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 STACKLY IT Solutions. All rights reserved.</p>
+  </div>
 </footer>
 
 <!-- JS -->

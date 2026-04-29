@@ -1,28 +1,494 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - STACKLY</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Admin Dashboard Styles */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .welcome-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+    }
+
+    .welcome-card h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    .stat-label {
+      color: #666;
+      margin-top: 8px;
+    }
+
+    .tasks-section {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tasks-section h3 {
+      color: #1a1f2c;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    /* User Table */
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .user-table th,
+    .user-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .user-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .user-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .user-role {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .role-admin {
+      background: #667eea;
+      color: white;
+    }
+
+    .role-user {
+      background: #28a745;
+      color: white;
+    }
+
+    .delete-user {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .delete-user:hover {
+      background: #c82333;
+    }
+
+    /* Task List */
+    .task-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .task-table th,
+    .task-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .task-status {
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-completed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .quick-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .refresh-btn {
+      background: #28a745;
+    }
+
+    .refresh-btn:hover {
+      background: #218838;
+    }
+
+    @media (max-width: 768px) {
+      .user-table, .task-table {
+        font-size: 12px;
+      }
+      .user-table th, .user-table td,
+      .task-table th, .task-table td {
+        padding: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<h1>👑 Admin Dashboard</h1>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.webp" alt="STACKLY Logo">
+    </a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</header>
 
-<h3>Registered Users:</h3>
-<ul id="userList"></ul>
+<div class="dashboard-container">
+  <!-- Welcome Card -->
+  <div class="welcome-card">
+    <h1>Admin Dashboard 👑</h1>
+    <p>Manage users, monitor tasks, and control the system</p>
+  </div>
 
-<button onclick="logout()">Logout</button>
+  <!-- Statistics -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number" id="totalUsers">0</div>
+      <div class="stat-label">Total Users</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="totalTasks">0</div>
+      <div class="stat-label">Total Tasks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="completedTasks">0</div>
+      <div class="stat-label">Completed Tasks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="pendingTasks">0</div>
+      <div class="stat-label">Pending Tasks</div>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="tasks-section">
+    <h3>👥 Registered Users</h3>
+    <div id="usersList">
+      <table class="user-table" id="userTable">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Role</th><th>Action</th></tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- All Tasks Table -->
+  <div class="tasks-section">
+    <h3>📋 All User Tasks</h3>
+    <div id="tasksList" style="overflow-x: auto;">
+      <table class="task-table" id="taskTable">
+        <thead>
+          <tr><th>User</th><th>Task</th><th>Priority</th><th>Status</th><th>Due Date</th></tr>
+        </thead>
+        <tbody id="taskTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <button class="quick-btn" onclick="refreshData()">🔄 Refresh Data</button>
+    <button class="quick-btn" onclick="exportAdminReport()">📊 Export Report</button>
+    <button class="quick-btn" onclick="clearAllData()">🗑️ Clear All Data</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="quick-links">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <p>&copy; 2026 STACKLY IT Solutions. All rights reserved.</p>
+</footer>
 
 <script src="auth.js"></script>
-
 <script>
-let users = JSON.parse(localStorage.getItem("users")) || [];
-let list = document.getElementById("userList");
+  // =======================
+  // ADMIN DASHBOARD FUNCTIONS
+  // =======================
+  
+  let allUsers = [];
+  let allTasks = [];
 
-users.forEach(u => {
-  let li = document.createElement("li");
-  li.innerText = u.name + " (" + u.role + ")";
-  list.appendChild(li);
-});
+  // Load Admin Dashboard
+  function loadAdminDashboard() {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    
+    // Check if user is admin
+    if (!currentUser || currentUser.role !== "admin") {
+      alert("Access denied! Admin only.");
+      window.location.href = "login.html";
+      return;
+    }
+    
+    loadData();
+    updateStats();
+    displayUsers();
+    displayAllTasks();
+  }
+
+  // Load Data
+  function loadData() {
+    allUsers = JSON.parse(localStorage.getItem("users")) || [];
+    allTasks = JSON.parse(localStorage.getItem("userTasks")) || [];
+  }
+
+  // Update Statistics
+  function updateStats() {
+    let totalUsers = allUsers.length;
+    let totalTasks = allTasks.length;
+    let completedTasks = allTasks.filter(t => t.status === "completed").length;
+    let pendingTasks = totalTasks - completedTasks;
+    
+    document.getElementById("totalUsers").innerText = totalUsers;
+    document.getElementById("totalTasks").innerText = totalTasks;
+    document.getElementById("completedTasks").innerText = completedTasks;
+    document.getElementById("pendingTasks").innerText = pendingTasks;
+  }
+
+  // Display Users Table
+  function displayUsers() {
+    let tbody = document.getElementById("userTableBody");
+    
+    if (allUsers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No users registered yet</td></tr>';
+      return;
+    }
+    
+    tbody.innerHTML = "";
+    
+    allUsers.forEach((user, index) => {
+      let row = tbody.insertRow();
+      row.innerHTML = `
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td><span class="user-role ${user.role === 'admin' ? 'role-admin' : 'role-user'}">${user.role}</span></td>
+        <td>${user.role !== 'admin' ? `<button class="delete-user" onclick="deleteUser('${user.email}')">Delete</button>` : '—'}</td>
+      `;
+    });
+  }
+
+  // Display All Tasks
+  function displayAllTasks() {
+    let tbody = document.getElementById("taskTableBody");
+    
+    if (allTasks.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No tasks created yet</td></tr>';
+      return;
+    }
+    
+    tbody.innerHTML = "";
+    
+    allTasks.forEach(task => {
+      let row = tbody.insertRow();
+      let statusClass = task.status === "completed" ? "status-completed" : "status-pending";
+      let statusText = task.status === "completed" ? "Completed" : "Pending";
+      
+      row.innerHTML = `
+        <td>${task.userEmail.split('@')[0]}</td>
+        <td>${task.title}</td>
+        <td>${task.priority || 'Medium'}</td>
+        <td><span class="task-status ${statusClass}">${statusText}</span></td>
+        <td>${task.dueDate || 'No date'}</td>
+      `;
+    });
+  }
+
+  // Delete User
+  function deleteUser(email) {
+    if (confirm(`Delete user: ${email}? This will also delete all their tasks.`)) {
+      // Remove user
+      allUsers = allUsers.filter(u => u.email !== email);
+      localStorage.setItem("users", JSON.stringify(allUsers));
+      
+      // Remove user's tasks
+      allTasks = allTasks.filter(t => t.userEmail !== email);
+      localStorage.setItem("userTasks", JSON.stringify(allTasks));
+      
+      // Refresh display
+      loadData();
+      updateStats();
+      displayUsers();
+      displayAllTasks();
+      
+      alert("User deleted successfully!");
+    }
+  }
+
+  // Refresh Data
+  function refreshData() {
+    loadData();
+    updateStats();
+    displayUsers();
+    displayAllTasks();
+    alert("Data refreshed!");
+  }
+
+  // Export Admin Report
+  function exportAdminReport() {
+    let completedTasks = allTasks.filter(t => t.status === "completed").length;
+    let pendingTasks = allTasks.length - completedTasks;
+    
+    let report = "STACKLY ADMIN REPORT\n";
+    report += "===================\n";
+    report += "Date: " + new Date().toLocaleString() + "\n\n";
+    report += "SYSTEM STATISTICS:\n";
+    report += "Total Users: " + allUsers.length + "\n";
+    report += "Total Tasks: " + allTasks.length + "\n";
+    report += "Completed Tasks: " + completedTasks + "\n";
+    report += "Pending Tasks: " + pendingTasks + "\n\n";
+    report += "USERS LIST:\n";
+    
+    allUsers.forEach(u => {
+      let userTasks = allTasks.filter(t => t.userEmail === u.email);
+      let userCompleted = userTasks.filter(t => t.status === "completed").length;
+      report += "- " + u.name + " (" + u.email + ") - Role: " + u.role + " - Tasks: " + userTasks.length + " (Completed: " + userCompleted + ")\n";
+    });
+    
+    report += "\nALL TASKS:\n";
+    allTasks.forEach(t => {
+      report += "- " + t.title + " - " + t.status + " - " + t.userEmail + "\n";
+    });
+    
+    let blob = new Blob([report], {type: "text/plain"});
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "admin_report_" + Date.now() + ".txt";
+    link.click();
+    
+    alert("Report downloaded!");
+  }
+
+  // Clear All Data
+  function clearAllData() {
+    if (confirm("⚠️ WARNING: This will delete ALL users and tasks! Are you sure?")) {
+      if (confirm("LAST WARNING: This action cannot be undone! Confirm again?")) {
+        localStorage.removeItem("users");
+        localStorage.removeItem("userTasks");
+        localStorage.removeItem("userActivities");
+        
+        // Keep current admin logged in
+        let currentAdmin = JSON.parse(localStorage.getItem("currentUser"));
+        localStorage.setItem("users", JSON.stringify([currentAdmin]));
+        
+        loadData();
+        updateStats();
+        displayUsers();
+        displayAllTasks();
+        
+        alert("All data cleared successfully!");
+      }
+    }
+  }
+
+  // Toggle Menu
+  function toggleMenu() {
+    let navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+      navLinks.classList.toggle('active');
+    }
+  }
+
+  // Initialize Dashboard
+  document.addEventListener("DOMContentLoaded", loadAdminDashboard);
 </script>
 
 </body>
