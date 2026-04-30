@@ -4,19 +4,352 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Careers - STACKLY</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .logo img { height: 45px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #1e293b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: #0284c7; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Careers Section */
+    .careers-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem 5%;
+      text-align: center;
+    }
+    .careers-section h1 {
+      font-size: 3rem;
+      color: #0284c7;
+      letter-spacing: 2px;
+    }
+    .careers-section h2 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 2rem;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: #f1f5f9;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      color: #1e293b;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #0284c7;
+      color: white;
+    }
+
+    /* Job Cards */
+    .job-container {
+      margin: 2rem 0;
+    }
+    .job-row-top, .job-row-bottom {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .job-card {
+      background: #f8fafc;
+      border-radius: 28px;
+      padding: 1.8rem;
+      width: 280px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .job-card:hover {
+      transform: translateY(-8px);
+      border-color: #0284c7;
+      box-shadow: 0 15px 30px -12px rgba(2,132,199,0.15);
+    }
+    .job-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .job-card h3 { font-size: 1.4rem; margin: 0.5rem 0; }
+    .job-type {
+      display: inline-block;
+      background: #e2e8f0;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    .job-details p { margin: 0.3rem 0; font-size: 0.9rem; color: #475569; }
+    .apply-btn {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .apply-btn:hover { background: #0ea5e9; }
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: #64748b;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      background: #f8fafc;
+      padding: 3rem 5%;
+      margin: 3rem auto;
+      border-radius: 48px;
+    }
+    .benefits h2, .culture h2, .process h2, .life h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0f172a;
+    }
+    .benefits span, .culture span, .process span, .life span {
+      color: #0284c7;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .benefit-card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .benefit-card i {
+      font-size: 2.5rem;
+      color: #0284c7;
+      margin-bottom: 1rem;
+    }
+    .benefit-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Culture Section */
+    .culture {
+      padding: 2rem 5%;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    .culture-text {
+      background: #f1f5f9;
+      padding: 2rem;
+      border-radius: 28px;
+      border-left: 5px solid #0284c7;
+    }
+
+    /* Process Steps */
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+    .step {
+      flex: 1;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 28px;
+      text-align: center;
+    }
+    .step .step-number {
+      background: #0284c7;
+      color: white;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      font-weight: bold;
+    }
+
+    /* Life at Stackly (Gallery Placeholder) */
+    .life {
+      padding: 2rem 5%;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .gallery-item {
+      background: #e2e8f0;
+      height: 150px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      padding: 2rem;
+      border-radius: 32px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .popup-content input, .popup-content button {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 40px;
+      border: 1px solid #cbd5e1;
+    }
+    .popup-content button {
+      background: #0284c7;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f1f5f9;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .quick-links ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .quick-links a {
+      color: #475569;
+      text-decoration: none;
+    }
+    .quick-links a:hover { color: #0284c7; }
+    .social-icons a {
+      color: #475569;
+      font-size: 1.5rem;
+      margin: 0 0.8rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover { color: #0284c7; transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
 </head>
+<body>
+
 <header class="header">
-  
-   <div class="logo">
-    <a href="index.html">
-      <img src="logo.webp" alt="STACKLY Logo">
-    </a>
+  <div class="logo">
+    <a href="index.html"><img src="logo.webp" alt="STACKLY Logo"></a>
   </div>
-
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
   <nav>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -30,114 +363,143 @@
   </nav>
 </header>
 
-<body>
-<!-- CAREERS SECTION -->
-<section class="careers-section" id="careers">
-  <h1>WE ARE HIRING</h1>
-  <h2>Join Our Dynamic Team</h2>
-  
-  <div class="filter-buttons">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="wfh">WFH</button>
-    <button class="filter-btn" data-filter="wfo">WFO</button>
-    <button class="filter-btn" data-filter="hybrid">Hybrid</button>
-  </div>
-  
-  <div class="job-container">
-    <!-- FIRST ROW - 3 BOXES -->
-    <div class="job-row-top">
-      <div class="job-card" data-job-type="wfo">
-        <div class="job-icon">📊</div>
-        <h3>Marketing Executive</h3>
-        <span class="job-type">WFO</span>
-        <div class="job-details">
-          <p>🎓 MBA</p>
-          <p>⏳ 1-3 Years</p>
-          <p>📍 Chennai</p>
-        </div>
-        <button class="apply-btn">Apply Now →</button>
-      </div>
-      
-      <div class="job-card" data-job-type="wfh">
-        <div class="job-icon">💻</div>
-        <h3>Web Developer</h3>
-        <span class="job-type">WFH</span>
-        <div class="job-details">
-          <p>🎓 Any Degree</p>
-          <p>💻 React / Node.js</p>
-          <p>⏳ 0-2 Years</p>
-        </div>
-        <button class="apply-btn">Apply Now →</button>
-      </div>
-      
-      <div class="job-card" data-job-type="hybrid">
-        <div class="job-icon">🤖</div>
-        <h3>Android Developer</h3>
-        <span class="job-type">Hybrid</span>
-        <div class="job-details">
-          <p>🎓 B.Tech / MCA</p>
-          <p>📱 Kotlin / Java</p>
-          <p>⏳ 2-4 Years</p>
-        </div>
-        <button class="apply-btn">Apply Now →</button>
-      </div>
+<main>
+  <!-- Career Intro & Job Listings -->
+  <section class="careers-section" id="careers">
+    <h1>WE ARE HIRING</h1>
+    <h2>Join Our Dynamic Team</h2>
+    
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="wfh">WFH</button>
+      <button class="filter-btn" data-filter="wfo">WFO</button>
+      <button class="filter-btn" data-filter="hybrid">Hybrid</button>
     </div>
     
-    <!-- SECOND ROW - 2 BOXES CENTERED -->
-    <div class="job-row-bottom">
-      <div class="job-card" data-job-type="wfo">
-        <div class="job-icon">🐘</div>
-        <h3>PHP Developer</h3>
-        <span class="job-type">WFO</span>
-        <div class="job-details">
-          <p>🎓 Any Degree</p>
-          <p>🐘 Laravel / Core PHP</p>
-          <p>⏳ 1-3 Years</p>
+    <div class="job-container">
+      <div class="job-row-top">
+        <div class="job-card" data-job-type="wfo">
+          <div class="job-icon">📊</div>
+          <h3>Marketing Executive</h3>
+          <span class="job-type">WFO</span>
+          <div class="job-details">
+            <p>🎓 MBA</p>
+            <p>⏳ 1-3 Years</p>
+            <p>📍 Chennai</p>
+          </div>
+          <button class="apply-btn" onclick="openPopup('Marketing Executive')">Apply Now →</button>
         </div>
-        <button class="apply-btn">Apply Now →</button>
+        <div class="job-card" data-job-type="wfh">
+          <div class="job-icon">💻</div>
+          <h3>Web Developer</h3>
+          <span class="job-type">WFH</span>
+          <div class="job-details">
+            <p>🎓 Any Degree</p>
+            <p>💻 React / Node.js</p>
+            <p>⏳ 0-2 Years</p>
+          </div>
+          <button class="apply-btn" onclick="openPopup('Web Developer')">Apply Now →</button>
+        </div>
+        <div class="job-card" data-job-type="hybrid">
+          <div class="job-icon">🤖</div>
+          <h3>Android Developer</h3>
+          <span class="job-type">Hybrid</span>
+          <div class="job-details">
+            <p>🎓 B.Tech / MCA</p>
+            <p>📱 Kotlin / Java</p>
+            <p>⏳ 2-4 Years</p>
+          </div>
+          <button class="apply-btn" onclick="openPopup('Android Developer')">Apply Now →</button>
+        </div>
       </div>
-      
-      <div class="job-card" data-job-type="wfh">
-        <div class="job-icon">📱</div>
-        <h3>App Developer</h3>
-        <span class="job-type">WFH</span>
-        <div class="job-details">
-          <p>🎓 B.E / B.Tech</p>
-          <p>⚡ Flutter / React Native</p>
-          <p>⏳ 1-4 Years</p>
+      <div class="job-row-bottom">
+        <div class="job-card" data-job-type="wfo">
+          <div class="job-icon">🐘</div>
+          <h3>PHP Developer</h3>
+          <span class="job-type">WFO</span>
+          <div class="job-details">
+            <p>🎓 Any Degree</p>
+            <p>🐘 Laravel / Core PHP</p>
+            <p>⏳ 1-3 Years</p>
+          </div>
+          <button class="apply-btn" onclick="openPopup('PHP Developer')">Apply Now →</button>
         </div>
-        <button class="apply-btn">Apply Now →</button>
+        <div class="job-card" data-job-type="wfh">
+          <div class="job-icon">📱</div>
+          <h3>App Developer</h3>
+          <span class="job-type">WFH</span>
+          <div class="job-details">
+            <p>🎓 B.E / B.Tech</p>
+            <p>⚡ Flutter / React Native</p>
+            <p>⏳ 1-4 Years</p>
+          </div>
+          <button class="apply-btn" onclick="openPopup('App Developer')">Apply Now →</button>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <!-- No results message -->
-  <div class="no-results" id="noResults">
-    No jobs found for this category
-  </div>
-</section>
-<!-- POPUP -->
+    <div class="no-results" id="noResults">No jobs found for this category</div>
+  </section>
+
+  <!-- Why Work at STACKLY (Benefits) -->
+  <section class="benefits">
+    <h2>Why Work at <span>STACKLY</span>?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card"><i class="fas fa-home"></i><h3>Remote Friendly</h3><p>WFH, WFO, or Hybrid – you choose.</p></div>
+      <div class="benefit-card"><i class="fas fa-chart-line"></i><h3>Growth Path</h3><p>Clear career progression & learning budgets.</p></div>
+      <div class="benefit-card"><i class="fas fa-heartbeat"></i><h3>Health Insurance</h3><p>Comprehensive coverage for you & family.</p></div>
+      <div class="benefit-card"><i class="fas fa-calendar-alt"></i><h3>Flexible Hours</h3><p>Work-life balance with core hours.</p></div>
+      <div class="benefit-card"><i class="fas fa-gift"></i><h3>Performance Bonuses</h3><p>Quarterly rewards & annual bonus.</p></div>
+      <div class="benefit-card"><i class="fas fa-laptop-code"></i><h3>Latest Tech</h3><p>Work with modern stacks & tools.</p></div>
+    </div>
+  </section>
+
+  <!-- Our Culture -->
+  <section class="culture">
+    <h2>Our <span>Culture</span></h2>
+    <div class="culture-text">
+      <p>At STACKLY, we believe in innovation, collaboration, and continuous learning. Our flat hierarchy encourages everyone to share ideas. We celebrate diversity, host hackathons, and provide regular upskilling sessions. Join a team where your voice matters and your work makes an impact.</p>
+    </div>
+  </section>
+
+  <!-- Application Process -->
+  <section class="process">
+    <h2><span>Application</span> Process</h2>
+    <div class="process-steps">
+      <div class="step"><div class="step-number">1</div><h4>Submit Resume</h4><p>Upload your CV & portfolio</p></div>
+      <div class="step"><div class="step-number">2</div><h4>Initial Screen</h4><p>30-min call with HR</p></div>
+      <div class="step"><div class="step-number">3</div><h4>Technical Round</h4><p>Live coding or assignment</p></div>
+      <div class="step"><div class="step-number">4</div><h4>Offer</h4><p>Join the Stackly family!</p></div>
+    </div>
+  </section>
+
+  <!-- Life at Stackly (Gallery Placeholder) -->
+  <section class="life">
+    <h2>Life at <span>STACKLY</span></h2>
+    <div class="gallery">
+      <div class="gallery-item"><i class="fas fa-people-arrows"></i> Team Events</div>
+      <div class="gallery-item"><i class="fas fa-chalkboard-user"></i> Learning Sessions</div>
+      <div class="gallery-item"><i class="fas fa-trophy"></i> Awards Night</div>
+      <div class="gallery-item"><i class="fas fa-hiking"></i> Offsites</div>
+    </div>
+  </section>
+</main>
+
+<!-- Popup Form -->
 <div id="applyPopup" class="popup">
   <div class="popup-content">
-
     <span class="close-btn" onclick="closePopup()">×</span>
-
     <h2>Apply for <span id="jobTitle"></span></h2>
-
-    <form>
+    <form id="applyForm">
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
       <input type="tel" placeholder="Phone Number" required>
-      <input type="file" required>
-      <button class="btn">Submit</button>
+      <input type="file" accept=".pdf,.doc" required>
+      <button type="submit" class="btn">Submit Application</button>
     </form>
-
   </div>
 </div>
 
-<script src="script.js"></script>
 <footer class="footer">
-
   <div class="quick-links">
     <h3>Quick Links</h3>
     <ul>
@@ -149,18 +511,73 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
-
   <div class="social-icons">
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-twitter"></i></a>
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
-
   <p>© 2026 STACKLY IT Solutions</p>
-
 </footer>
 
-</body>
+<script>
+  // Menu toggle
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('show');
+  }
 
+  // Job filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const jobCards = document.querySelectorAll('.job-card');
+  const noResultsDiv = document.getElementById('noResults');
+
+  function filterJobs(filterValue) {
+    let visibleCount = 0;
+    jobCards.forEach(card => {
+      if (filterValue === 'all' || card.getAttribute('data-job-type') === filterValue) {
+        card.style.display = 'block';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    noResultsDiv.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      filterJobs(filter);
+    });
+  });
+
+  // Popup logic
+  const popup = document.getElementById('applyPopup');
+  const jobTitleSpan = document.getElementById('jobTitle');
+
+  function openPopup(jobTitle) {
+    jobTitleSpan.innerText = jobTitle;
+    popup.style.display = 'flex';
+  }
+
+  function closePopup() {
+    popup.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    if (event.target === popup) closePopup();
+  }
+
+  // Form submission
+  document.getElementById('applyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Application submitted successfully! Our team will contact you soon.');
+    closePopup();
+    this.reset();
+  });
+</script>
+
+</body>
 </html>

@@ -4,23 +4,286 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services - STACKLY</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .logo img { height: 45px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #1e293b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: #0284c7; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Sections */
+    .section {
+      padding: 4rem 10%;
+      max-width: 1400px;
+      margin: auto;
+    }
+    .section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0f172a;
+    }
+    .section h2 span {
+      color: #0284c7;
+    }
+    .service-desc {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      color: #475569;
+    }
+    .service-image {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .service-image img {
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Service Cards Grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .card {
+      background: #f8fafc;
+      border-radius: 28px;
+      padding: 2rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #0284c7;
+      box-shadow: 0 20px 30px -12px rgba(2,132,199,0.15);
+    }
+    .card h3 {
+      font-size: 1.6rem;
+      color: #0284c7;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      color: #334155;
+    }
+
+    /* Process Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .process-step {
+      text-align: center;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 28px;
+    }
+    .process-step i {
+      font-size: 2.5rem;
+      color: #0284c7;
+      margin-bottom: 1rem;
+    }
+    .process-step h4 {
+      font-size: 1.3rem;
+    }
+
+    /* Pricing Table */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .pricing-card {
+      background: #f8fafc;
+      border-radius: 32px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+      transition: 0.3s;
+    }
+    .pricing-card:hover {
+      transform: scale(1.02);
+      border-color: #0284c7;
+    }
+    .pricing-card h3 {
+      font-size: 1.8rem;
+      color: #0f172a;
+    }
+    .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0284c7;
+      margin: 1rem 0;
+    }
+    .pricing-card ul {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .pricing-card li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .pricing-card .btn-small {
+      background: #0284c7;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: #f8fafc;
+      margin: 1rem 0;
+      padding: 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+    }
+    .faq-question {
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 0.8rem;
+      color: #475569;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, #f1f5f9, #ffffff);
+      border-radius: 48px;
+      padding: 3rem;
+      text-align: center;
+      margin: 3rem 0;
+      border: 1px solid #0284c7;
+    }
+    .cta-btn {
+      background: #0284c7;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f1f5f9;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .quick-links ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .quick-links a {
+      color: #475569;
+      text-decoration: none;
+    }
+    .quick-links a:hover { color: #0284c7; }
+    .social-icons a {
+      color: #475569;
+      font-size: 1.5rem;
+      margin: 0 0.8rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover { color: #0284c7; transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+      .section { padding: 3rem 5%; }
+    }
+  </style>
 </head>
+<body>
+
 <header class="header">
-   <div class="logo">
-    <a href="index.html">
-      <img src="logo.webp" alt="STACKLY Logo">
-    </a>
+  <div class="logo">
+    <a href="index.html"><img src="logo.webp" alt="STACKLY Logo"></a>
   </div>
-
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
   <nav>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Service</a></li>
+      <li><a href="services.html" class="active">Service</a></li>
       <li><a href="careers.html">Careers</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -29,47 +292,125 @@
   </nav>
 </header>
 
-<body>
-<section class="section services-section">
-
-  <h2>Our Services</h2>
-
-  <p class="service-desc">
-    An effective IT service page design sho.uld prioritize a user-friendly layout that immediately highlights solutions, benefits, and credibility.Future-ready solutions designed for performance, scalability, and security.
-  </p>
-
-  <!-- Service Image -->
-  <div class="service-image">
-  <img src="service.webp" alt="Service Image">
-</div>
-
-  <!-- Service Cards -->
-  <div class="cards">
-
-    <div class="card" onclick="showService('Cloud Solutions')">
-      <h3>Cloud Solutions</h3>
-      <p>As enterprises scale digital platforms,AI workloads, and cloud connected infrastructure, traditional data centers start to show limit. It support High denity Architecture, Advanced cooloing Infratructure, Availability & SLA, Security & compliance. Scalable cloud infrastructure.</p>
+<main>
+  <!-- Services Intro -->
+  <section class="section">
+    <h2><span>Our Services</span></h2>
+    <p class="service-desc">
+      An effective IT service page design prioritizes a user-friendly layout that immediately highlights solutions, benefits, and credibility. Future-ready solutions designed for performance, scalability, and security.
+    </p>
+    <div class="service-image">
+      <img src="service.webp" alt="Service Image">
     </div>
 
-    <div class="card" onclick="showService('AI & Data Analytics')">
-      <h3>AI & Data Analytics</h3>
-      <p>Ai enables systems to perform tasks that typically require human cognitive abilities such as kearning, problem-solving, and decision making.Transform data into insights.</p>
+    <!-- Service Cards (enhanced descriptions) -->
+    <div class="cards">
+      <div class="card" onclick="showService('Cloud Solutions')">
+        <h3><i class="fas fa-cloud"></i> Cloud Solutions</h3>
+        <p>As enterprises scale digital platforms, AI workloads, and cloud-connected infrastructure, traditional data centers show limits. We provide high-density architecture, advanced cooling, 99.99% SLA, security & compliance. Scalable cloud infrastructure (AWS, Azure, GCP).</p>
+      </div>
+      <div class="card" onclick="showService('AI & Data Analytics')">
+        <h3><i class="fas fa-chart-line"></i> AI & Data Analytics</h3>
+        <p>AI enables systems to perform tasks requiring human cognitive abilities: learning, problem-solving, decision making. We transform raw data into actionable insights with predictive models and real-time dashboards.</p>
+      </div>
+      <div class="card" onclick="showService('Cyber Security')">
+        <h3><i class="fas fa-shield-alt"></i> Cyber Security</h3>
+        <p>Protect your systems, networks, and data from digital attacks. Our services include threat monitoring, penetration testing, zero-trust architecture, and incident response. Advanced protection for peace of mind.</p>
+      </div>
+      <div class="card" onclick="showService('Web Development')">
+        <h3><i class="fas fa-code"></i> Web Development</h3>
+        <p>Modern, responsive websites and web apps that function like mobile apps. We build with React, Vue, Node.js, and ensure SEO optimization, fast load times, and intuitive UX/UI.</p>
+      </div>
+      <div class="card" onclick="showService('Mobile App Development')">
+        <h3><i class="fas fa-mobile-alt"></i> Mobile App Development</h3>
+        <p>Native iOS (Swift) and Android (Kotlin) as well as cross-platform (Flutter, React Native) apps. From concept to app store deployment, we deliver high-performance mobile experiences.</p>
+      </div>
+      <div class="card" onclick="showService('IT Consulting')">
+        <h3><i class="fas fa-users"></i> IT Consulting</h3>
+        <p>Strategic advice to align technology with business goals. Infrastructure audit, digital transformation roadmap, and technology selection assistance.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card" onclick="showService('Cyber Security')">
-      <h3>Cyber Security</h3>
-      <p>Cybersecurity is the practice of protecting systems, networks, programs, and data from digital attacks, unauthorized access, and damage. It involves using technology, processes, and trained personnel to ensure confidentiality, integrity, and availability of information, reducing risks of theft or extortion.Advanced protection systems.</p>
+  <!-- How We Work (Process) -->
+  <section class="section">
+    <h2>How <span>We Work</span></h2>
+    <div class="process-grid">
+      <div class="process-step"><i class="fas fa-comments"></i><h4>1. Discovery</h4><p>Understand your goals, challenges, and requirements.</p></div>
+      <div class="process-step"><i class="fas fa-drafting-compass"></i><h4>2. Planning</h4><p>Create a roadmap, tech stack selection, and timeline.</p></div>
+      <div class="process-step"><i class="fas fa-laptop-code"></i><h4>3. Development</h4><p>Agile sprints with regular demos and feedback loops.</p></div>
+      <div class="process-step"><i class="fas fa-check-circle"></i><h4>4. Launch & Support</h4><p>Deployment, testing, and 24/7 maintenance.</p></div>
     </div>
+  </section>
 
-    <div class="card" onclick="showService('Web Development')">
-      <h3>Web Development</h3>
-      <p>Web apps are responsive websites that function like mobile apps but are accessed via browseers.Modern web applications.</p>
+  <!-- Pricing Plans -->
+  <section class="section">
+    <h2>Flexible <span>Pricing</span></h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">$999</div>
+        <ul>
+          <li>Basic Website or App</li>
+          <li>3 Pages / Screens</li>
+          <li>1 Month Support</li>
+          <li>Basic SEO</li>
+        </ul>
+        <a href="contact.html" class="btn-small">Get Quote</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Professional</h3>
+        <div class="price">$2,999</div>
+        <ul>
+          <li>Full Web App / E‑commerce</li>
+          <li>Up to 10 Pages</li>
+          <li>3 Months Support</li>
+          <li>Advanced SEO & Analytics</li>
+        </ul>
+        <a href="contact.html" class="btn-small">Get Quote</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <ul>
+          <li>Custom Solution</li>
+          <li>Scalable Cloud Infrastructure</li>
+          <li>Dedicated Team</li>
+          <li>24/7 Priority Support</li>
+        </ul>
+        <a href="contact.html" class="btn-small">Contact Us</a>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- FAQ Section -->
+  <section class="section">
+    <h2>Frequently Asked <span>Questions</span></h2>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">What is your typical project timeline? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Most projects take 4–12 weeks depending on complexity. We’ll provide a detailed timeline during discovery.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">Do you offer post-launch maintenance? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Yes, we offer monthly maintenance packages including updates, backups, and security patches.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">Can you integrate with my existing systems? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Absolutely. We specialize in API integrations, ERP/CRM connections, and legacy system upgrades.</div>
+    </div>
+  </section>
 
-</section><footer class="footer">
+  <!-- Call to Action -->
+  <section class="section">
+    <div class="cta-section">
+      <h3>Ready to accelerate your business?</h3>
+      <p>Let’s discuss your project and find the best solution.</p>
+      <a href="contact.html" class="cta-btn">Request a Free Consultation →</a>
+    </div>
+  </section>
+</main>
 
+<footer class="footer">
   <div class="quick-links">
     <h3>Quick Links</h3>
     <ul>
@@ -81,17 +422,26 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
-
   <div class="social-icons">
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-twitter"></i></a>
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
-
   <p>© 2026 STACKLY IT Solutions</p>
-
 </footer>
-<script src="script.js"></script>
+
+<script>
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('show');
+  }
+  function showService(serviceName) {
+    alert(`Thank you for your interest in ${serviceName}. Our team will contact you shortly.`);
+  }
+  function toggleFAQ(element) {
+    element.classList.toggle('active');
+  }
+</script>
+
 </body>
 </html>

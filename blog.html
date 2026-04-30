@@ -4,20 +4,181 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blogs - STACKLY</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;  /* White background */
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #1e293b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #0284c7;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Blog Section */
+    .blog-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 2rem 5%;
+      text-align: center;
+    }
+    .blog-section h4 {
+      font-size: 1.2rem;
+      color: #0284c7;
+      letter-spacing: 2px;
+    }
+    .blog-section h2 {
+      font-size: 2.2rem;
+      color: #0f172a;
+      margin-bottom: 2rem;
+    }
+    .blog-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .blog-card {
+      background: #f8fafc;
+      border-radius: 28px;
+      width: 320px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #e2e8f0;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .blog-content {
+      padding: 1.5rem;
+      text-align: left;
+    }
+    .blog-content span {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .blog-content h3 {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      color: #0f172a;
+    }
+    .blog-content a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .blog-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f1f5f9;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .quick-links ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .quick-links a {
+      color: #475569;
+      text-decoration: none;
+    }
+    .quick-links a:hover { color: #0284c7; }
+    .social-icons a {
+      color: #475569;
+      font-size: 1.5rem;
+      margin: 0 0.8rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover { color: #0284c7; transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+      .blog-container { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="logo">
     <a href="index.html">
       <img src="logo.webp" alt="Logo">
     </a>
   </div>
-
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <nav>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -26,21 +187,20 @@
       <li><a href="careers.html">Careers</a></li>
       <li><a href="blog.html" class="active">Blogs</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
 </header>
 
 <!-- BLOG SECTION -->
 <section class="blog-section">
-
   <h4>OUR NEWS</h4>
   <h2>Latest Insights</h2>
 
   <div class="blog-container">
-
     <!-- Blog 1 -->
     <div class="blog-card">
-      <img src="blog1.jpg" alt="Cybersecurity">
+      <img src="blog1.jpg" alt="Cybersecurity" onerror="this.src='https://placehold.co/400x200/f1f5f9/1e293b?text=Cybersecurity'">
       <div class="blog-content">
         <span>Oct 12, 2023 • Admin</span>
         <h3>Top 5 Cybersecurity Threats in 2024</h3>
@@ -50,7 +210,7 @@
 
     <!-- Blog 2 -->
     <div class="blog-card">
-      <img src="blog2.webp" alt="Cloud">
+      <img src="blog2.webp" alt="Cloud" onerror="this.src='https://placehold.co/400x200/f1f5f9/1e293b?text=Cloud+Migration'">
       <div class="blog-content">
         <span>Oct 05, 2023 • Tech Team</span>
         <h3>Cloud Migration for Modern Businesses</h3>
@@ -60,18 +220,17 @@
 
     <!-- Blog 3 -->
     <div class="blog-card">
-      <img src="blog3.webp" alt="AI">
+      <img src="blog3.webp" alt="AI" onerror="this.src='https://placehold.co/400x200/f1f5f9/1e293b?text=AI+Automation'">
       <div class="blog-content">
         <span>Sep 28, 2023 • HR</span>
         <h3>AI & Automation in Business</h3>
         <a href="blog3.html">Read More →</a>
       </div>
     </div>
-
   </div>
+</section>
 
-</section><footer class="footer">
-
+<footer class="footer">
   <div class="quick-links">
     <h3>Quick Links</h3>
     <ul>
@@ -83,17 +242,21 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
-
   <div class="social-icons">
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-twitter"></i></a>
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
-
   <p>© 2026 STACKLY IT Solutions</p>
-
 </footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('show');
+  }
+</script>
 
 </body>
 </html>
