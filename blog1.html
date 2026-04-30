@@ -4,242 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cybersecurity Threats 2024 - STACKLY</title>
-  <!-- Font Awesome (optional, for potential icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #ffffff;  /* White background */
-      color: #1e293b;
-      line-height: 1.6;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .logo img {
-      height: 45px;
-      width: auto;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: #1e293b;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      color: #0284c7;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* Blog Details Section */
-    .blog-details {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: #ffffff;
-      border-radius: 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border: 1px solid #e2e8f0;
-    }
-    .blog-details img {
-      width: 100%;
-      border-radius: 24px;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e2e8f0;
-    }
-    .blog-details h1 {
-      font-size: 2.2rem;
-      color: #0f172a;
-      margin-bottom: 1rem;
-    }
-    .blog-details h2 {
-      font-size: 1.8rem;
-      margin: 1.5rem 0 1rem;
-      color: #0f172a;
-    }
-    .blog-details h3 {
-      font-size: 1.4rem;
-      margin: 1rem 0 0.5rem;
-      color: #0284c7;
-    }
-    .blog-details p {
-      margin: 0.8rem 0;
-      color: #334155;
-    }
-    .btn {
-      display: inline-block;
-      background: #0284c7;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
-      text-decoration: none;
-      margin-top: 1.5rem;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #0ea5e9;
-      transform: translateX(-4px);
-    }
-
-    /* Footer */
-    .footer {
-      background: #f1f5f9;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      border-top: 1px solid #e2e8f0;
-    }
-    .quick-links ul {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      list-style: none;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .quick-links a {
-      color: #475569;
-      text-decoration: none;
-    }
-    .quick-links a:hover { color: #0284c7; }
-    .social-icons a {
-      color: #475569;
-      font-size: 1.5rem;
-      margin: 0 0.8rem;
-      transition: 0.3s;
-    }
-    .social-icons a:hover { color: #0284c7; transform: translateY(-3px); }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 70px;
-        right: 5%;
-        width: 200px;
-        padding: 1rem;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      }
-      .nav-links.show { display: flex; }
-      .menu-toggle { display: block; }
-      .blog-details { margin: 1.5rem; padding: 1.5rem; }
+    /* Copy the exact same CSS from your blog.html (all styles) */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#ffffff; color:#1e293b; line-height:1.6; }
+    .header { display:flex; justify-content:space-between; align-items:center; padding:1rem 5%; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); position:sticky; top:0; z-index:100; border-bottom:1px solid #e2e8f0; }
+    .logo img { height:45px; width:auto; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:#1e293b; text-decoration:none; font-weight:500; transition:0.3s; }
+    .nav-links a:hover { color:#0284c7; }
+    .menu-toggle { display:none; font-size:1.8rem; cursor:pointer; }
+    .blog-details { max-width:800px; margin:3rem auto; padding:2rem; background:#ffffff; border-radius:28px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border:1px solid #e2e8f0; }
+    .blog-details img { width:100%; border-radius:24px; margin-bottom:1.5rem; }
+    .blog-details h1 { font-size:2.2rem; margin-bottom:0.5rem; }
+    .blog-meta { color:#64748b; margin-bottom:1.5rem; }
+    .blog-details h2 { font-size:1.8rem; margin:1.5rem 0 1rem; }
+    .blog-details h3 { font-size:1.4rem; margin:1rem 0 0.5rem; color:#0284c7; }
+    .btn { display:inline-block; background:#0284c7; color:white; padding:0.6rem 1.2rem; border-radius:40px; text-decoration:none; margin-top:1.5rem; }
+    .btn:hover { background:#0ea5e9; }
+    /* Footer styles as in blog.html */
+    .footer { background:#f1f5f9; text-align:center; padding:2rem; margin-top:3rem; border-top:1px solid #e2e8f0; }
+    .footer-content { display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; max-width:1200px; margin:0 auto; }
+    .quick-links ul { list-style:none; }
+    .quick-links a, .footer-contact p { color:#475569; text-decoration:none; }
+    .social-icons a { color:#475569; font-size:1.5rem; margin:0 0.5rem; display:inline-block; transition:0.3s; }
+    .social-icons a:hover { color:#0284c7; transform:translateY(-3px); }
+    .footer-bottom { text-align:center; margin-top:2rem; padding-top:1rem; border-top:1px solid #e2e8f0; }
+    @media (max-width:768px) {
+      .nav-links { display:none; flex-direction:column; background:white; position:absolute; top:70px; right:5%; width:200px; padding:1rem; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+      .nav-links.show { display:flex; }
+      .menu-toggle { display:block; }
     }
   </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">
-    <a href="index.html">
-      <img src="logo.png" alt="STACKLY Logo">
-    </a>
-  </div>
+  <div class="logo"><a href="index.html"><img src="logo.webp" alt="STACKLY Logo"></a></div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <nav>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="blog.html" class="active">Blogs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="404.html">Login</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- BLOG DETAILS -->
 <section class="blog-details">
   <img src="blog1.jpg" alt="Cybersecurity">
   <h1>Top 5 Cybersecurity Threats in 2024 and How to Prevent Them</h1>
-
-  <p>
-    In today’s fast-growing digital world, cybersecurity has become a critical part of every business.
-    With increasing online activities, cyber threats are evolving rapidly.
-  </p>
-
-  <p><strong>Top 5 cybersecurity threats:</strong></p>
-
+  <div class="blog-meta">Oct 12, 2023 • Admin</div>
+  <p>In today’s fast-growing digital world, cybersecurity has become a critical part of every business...</p>
   <h3>1. Phishing Attacks</h3>
   <p>Fake emails/messages used to steal sensitive information.</p>
-
   <h3>2. Ransomware</h3>
   <p>Locks systems and demands money.</p>
-
   <h3>3. Malware</h3>
   <p>Viruses and spyware that damage systems.</p>
-
   <h3>4. Insider Threats</h3>
   <p>Internal misuse or accidental data leaks.</p>
-
   <h3>5. Cloud Security Risks</h3>
   <p>Misconfigured cloud systems expose data.</p>
-
   <h2>How to Prevent These Threats</h2>
-
-  <p>
-    ✔ Strong passwords & MFA <br>
-    ✔ Antivirus & firewall <br>
-    ✔ Regular updates <br>
-    ✔ Employee training <br>
-    ✔ Secure cloud setup
-  </p>
-
-  <!-- BACK BUTTON -->
+  <p>✔ Strong passwords & MFA<br>✔ Antivirus & firewall<br>✔ Regular updates<br>✔ Employee training<br>✔ Secure cloud setup</p>
   <a href="blog.html" class="btn">← Back to Blogs</a>
 </section>
 
 <footer class="footer">
-  <div class="quick-links">
-    <h3>Quick Links</h3>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="careers.html">Careers</a></li>
-      <li><a href="blog.html">Blogs</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+  <div class="footer-content">
+    <div class="quick-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-envelope"></i> info@stackly.com</p>
+      <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="javascript:void(0)" onclick="window.location.href='404.html'"><i class="fab fa-facebook-f"></i></a>
+      <a href="javascript:void(0)" onclick="window.location.href='404.html'"><i class="fab fa-instagram"></i></a>
+      <a href="javascript:void(0)" onclick="window.location.href='404.html'"><i class="fab fa-twitter"></i></a>
+      <a href="javascript:void(0)" onclick="window.location.href='404.html'"><i class="fab fa-youtube"></i></a>
+      <a href="javascript:void(0)" onclick="window.location.href='404.html'"><i class="fab fa-linkedin-in"></i></a>
+    </div>
   </div>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-youtube"></i></a>
+  <div class="footer-bottom">
+    <p>© 2026 STACKLY IT Solutions. All rights reserved.</p>
   </div>
-  <p>© 2026 STACKLY IT Solutions</p>
 </footer>
 
 <script>
-  // Mobile menu toggle
-  function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('show');
-  }
+  function toggleMenu() { document.querySelector('.nav-links').classList.toggle('show'); }
 </script>
-
 </body>
 </html>

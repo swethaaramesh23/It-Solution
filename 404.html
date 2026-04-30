@@ -4,50 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Auto redirect after 8 seconds -->
+  <!-- Auto redirect after 8 seconds (optional) -->
   <meta http-equiv="refresh" content="8;url=index.html">
 
   <title>404 - Page Not Found</title>
-
   <link rel="stylesheet" href="error.css">
 </head>
-
 <body>
 
 <div class="container">
-
-  <!-- Logo -->
   <h2 class="logo">STACKLY IT Solutions</h2>
-
-  <!-- Error -->
   <h1 class="error-code">404</h1>
   <h2>Page Not Found</h2>
-
-  <!-- Message -->
   <p>
     Oops! The page you're looking for seems to have wandered off.
     It might have been moved, deleted, or never existed.
   </p>
 
-  <!-- Buttons -->
   <div class="buttons">
-  <a href="index.html" class="btn primary">🏠 Go Back Home</a>
-
-  <button onclick="goBack()" class="btn">⬅ Previous Page</button>
-
-  <a href="index.html#contact" class="btn">📞 Contact Support</a>
-</div>
-
-  <!-- Search -->
-  <div class="search-box">
-    <input type="text" placeholder="Search...">
-    <button onclick="goHome()">Search</button>
+    <a href="index.html" class="btn primary">🏠 Go Back Home</a>
+    <button onclick="goBack()" class="btn">⬅ Previous Page</button>
+    <a href="index.html#contact" class="btn">📞 Contact Support</a>
   </div>
 
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="goHome()">Search</button>
+  </div>
 </div>
 
-<script src="script.js"></script>
- 
+<script>
+  // Function to go back to previous page
+  function goBack() {
+    window.history.back();
+  }
+
+  // Function to go home (or search – you can implement search logic)
+  function goHome() {
+    const query = document.getElementById('searchInput').value;
+    if (query.trim() !== "") {
+      // Simple search: redirect to Google or your own search page
+      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query) + " site:stackly.com";
+    } else {
+      window.location.href = "index.html";
+    }
+  }
+</script>
 
 </body>
 </html>

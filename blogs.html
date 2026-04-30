@@ -7,206 +7,52 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #ffffff;  /* White background */
-      color: #1e293b;
-      line-height: 1.6;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .logo img { height: 45px; width: auto; }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: #1e293b;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .nav-links a:hover { color: #0284c7; }
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* Blog Section */
-    .blog-section {
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 2rem 5%;
-      text-align: center;
-    }
-    .blog-section h1 {
-      font-size: 3rem;
-      color: #0284c7;
-      letter-spacing: 2px;
-    }
-    .blog-section h2 {
-      font-size: 1.8rem;
-      color: #0f172a;
-      margin-bottom: 2rem;
-    }
-    .blog-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .blog-card {
-      background: #f8fafc;
-      border-radius: 28px;
-      width: 320px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: 1px solid #e2e8f0;
-    }
-    .blog-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
-    }
-    .blog-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .blog-content {
-      padding: 1.5rem;
-      text-align: left;
-    }
-    .blog-meta {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-bottom: 0.5rem;
-    }
-    .blog-content h3 {
-      font-size: 1.3rem;
-      margin: 0.5rem 0;
-      color: #0f172a;
-    }
-    .blog-content p {
-      color: #475569;
-      margin: 0.8rem 0;
-    }
-    .read-more {
-      color: #0284c7;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    .read-more:hover {
-      text-decoration: underline;
-    }
-
-    /* Popup (same as original) */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .popup-content {
-      background: white;
-      width: 90%;
-      max-width: 500px;
-      padding: 2rem;
-      border-radius: 32px;
-      position: relative;
-    }
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* Footer */
-    .footer {
-      background: #f1f5f9;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      border-top: 1px solid #e2e8f0;
-    }
-    .quick-links ul {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      list-style: none;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .quick-links a {
-      color: #475569;
-      text-decoration: none;
-    }
-    .quick-links a:hover { color: #0284c7; }
-    .social-icons a {
-      color: #475569;
-      font-size: 1.5rem;
-      margin: 0 0.8rem;
-      transition: 0.3s;
-    }
-    .social-icons a:hover { color: #0284c7; transform: translateY(-3px); }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 70px;
-        right: 5%;
-        width: 200px;
-        padding: 1rem;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      }
-      .nav-links.show { display: flex; }
-      .menu-toggle { display: block; }
-      .blog-container { flex-direction: column; align-items: center; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#ffffff; color:#1e293b; line-height:1.6; }
+    .header { display:flex; justify-content:space-between; align-items:center; padding:1rem 5%; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); position:sticky; top:0; z-index:100; border-bottom:1px solid #e2e8f0; }
+    .logo img { height:45px; width:auto; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:#1e293b; text-decoration:none; font-weight:500; transition:0.3s; }
+    .nav-links a:hover { color:#0284c7; }
+    .menu-toggle { display:none; font-size:1.8rem; cursor:pointer; }
+    .blog-section { max-width:1200px; margin:3rem auto; padding:2rem 5%; text-align:center; }
+    .blog-section h1 { font-size:3rem; color:#0284c7; letter-spacing:2px; }
+    .blog-section h2 { font-size:1.8rem; color:#0f172a; margin-bottom:2rem; }
+    .blog-container { display:flex; justify-content:center; flex-wrap:wrap; gap:2rem; }
+    .blog-card { background:#f8fafc; border-radius:28px; width:320px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); transition:0.3s; border:1px solid #e2e8f0; }
+    .blog-card:hover { transform:translateY(-8px); box-shadow:0 15px 30px -12px rgba(0,0,0,0.1); }
+    .blog-image { width:100%; height:180px; object-fit:cover; }
+    .blog-content { padding:1.5rem; text-align:left; }
+    .blog-meta { font-size:0.8rem; color:#64748b; margin-bottom:0.5rem; }
+    .blog-content h3 { font-size:1.3rem; margin:0.5rem 0; color:#0f172a; }
+    .blog-content p { color:#475569; margin:0.8rem 0; }
+    .read-more { color:#0284c7; text-decoration:none; font-weight:600; display:inline-block; margin-top:0.5rem; cursor:pointer; }
+    .read-more:hover { text-decoration:underline; }
+    .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:1000; }
+    .popup-content { background:white; width:90%; max-width:500px; padding:2rem; border-radius:32px; position:relative; }
+    .close-btn { position:absolute; top:15px; right:20px; font-size:1.8rem; cursor:pointer; }
+    .footer { background:#f1f5f9; padding:2rem 10%; margin-top:3rem; }
+    .footer-content { display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; max-width:1200px; margin:0 auto; }
+    .quick-links ul { list-style:none; }
+    .quick-links a, .footer-contact p { color:#475569; text-decoration:none; }
+    .quick-links a:hover { color:#0284c7; }
+    .footer-contact p i { margin-right:0.5rem; color:#0284c7; }
+    .social-icons a { color:#475569; font-size:1.5rem; margin:0 0.5rem; display:inline-block; transition:0.3s; text-decoration:none; }
+    .social-icons a:hover { color:#0284c7; transform:translateY(-3px); }
+    .footer-bottom { text-align:center; margin-top:2rem; padding-top:1rem; border-top:1px solid #e2e8f0; color:#64748b; }
+    @media (max-width:768px) {
+      .nav-links { display:none; flex-direction:column; background:white; position:absolute; top:70px; right:5%; width:200px; padding:1rem; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+      .nav-links.show { display:flex; }
+      .menu-toggle { display:block; }
+      .blog-container { flex-direction:column; align-items:center; }
+      .footer-content { flex-direction:column; text-align:center; }
     }
   </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">
-    <a href="index.html">
-      <img src="logo.webp" alt="STACKLY Logo">
-    </a>
-  </div>
+  <div class="logo"><a href="index.html"><img src="logo.webp" alt="STACKLY Logo"></a></div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <nav>
     <ul class="nav-links">
@@ -216,53 +62,45 @@
       <li><a href="careers.html">Careers</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="login.html">Login</a></li>
+      <li><a href="404.html">Login</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- BLOG SECTION - 3 BOXES IN SINGLE LINE -->
 <section class="blog-section">
   <h1>OUR NEWS</h1>
   <h2>Latest Insights</h2>
-  
   <div class="blog-container">
-    <!-- Blog Card 1 -->
     <div class="blog-card">
       <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=200&fit=crop" alt="Cybersecurity" class="blog-image">
       <div class="blog-content">
         <div class="blog-meta">Oct 12, 2023 • Admin</div>
         <h3>Top 5 Cybersecurity Threats in 2024</h3>
         <p>Discover the emerging attack vectors and how to safeguard your digital ecosystem from evolving cyber threats.</p>
-        <a href="javascript:void(0)" onclick="openBlogPopup('Top 5 Cybersecurity Threats in 2024', 'Discover the emerging attack vectors and how to safeguard your digital ecosystem from evolving cyber threats.')" class="read-more">Read More →</a>
+        <a class="read-more" onclick="openBlogPopup('Top 5 Cybersecurity Threats in 2024', 'Discover the emerging attack vectors and how to safeguard your digital ecosystem from evolving cyber threats.')">Read More →</a>
       </div>
     </div>
-    
-    <!-- Blog Card 2 -->
     <div class="blog-card">
       <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=200&fit=crop" alt="Cloud Migration" class="blog-image">
       <div class="blog-content">
         <div class="blog-meta">Oct 05, 2023 • Tech Team</div>
         <h3>Cloud Migration for Modern Businesses</h3>
         <p>Strategic frameworks to reduce costs, improve scalability, and ensure data resilience in the cloud era.</p>
-        <a href="javascript:void(0)" onclick="openBlogPopup('Cloud Migration for Modern Businesses', 'Strategic frameworks to reduce costs, improve scalability, and ensure data resilience in the cloud era.')" class="read-more">Read More →</a>
+        <a class="read-more" onclick="openBlogPopup('Cloud Migration for Modern Businesses', 'Strategic frameworks to reduce costs, improve scalability, and ensure data resilience in the cloud era.')">Read More →</a>
       </div>
     </div>
-    
-    <!-- Blog Card 3 -->
     <div class="blog-card">
       <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=200&fit=crop" alt="AI Automation" class="blog-image">
       <div class="blog-content">
         <div class="blog-meta">Sep 28, 2023 • HR</div>
         <h3>AI & Automation in Business</h3>
         <p>How AI reshapes workflows, talent acquisition, and delivers exceptional customer experiences.</p>
-        <a href="javascript:void(0)" onclick="openBlogPopup('AI & Automation in Business', 'How AI reshapes workflows, talent acquisition, and delivers exceptional customer experiences.')" class="read-more">Read More →</a>
+        <a class="read-more" onclick="openBlogPopup('AI & Automation in Business', 'How AI reshapes workflows, talent acquisition, and delivers exceptional customer experiences.')">Read More →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- POPUP FOR BLOG -->
 <div id="blogPopup" class="popup">
   <div class="popup-content">
     <span class="close-btn" onclick="closeBlogPopup()">×</span>
@@ -272,50 +110,46 @@
 </div>
 
 <footer class="footer">
-  <div class="quick-links">
-    <h3>Quick Links</h3>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="careers.html">Careers</a></li>
-      <li><a href="blog.html">Blogs</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+  <div class="footer-content">
+    <div class="quick-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-envelope"></i> info@stackly.com</p>
+      <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+      <a href="404.html"><i class="fab fa-instagram"></i></a>
+      <a href="404.html"><i class="fab fa-twitter"></i></a>
+      <a href="404.html"><i class="fab fa-youtube"></i></a>
+      <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+    </div>
   </div>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-youtube"></i></a>
+  <div class="footer-bottom">
+    <p>© 2026 STACKLY IT Solutions. All rights reserved.</p>
   </div>
-  <p>© 2026 STACKLY IT Solutions</p>
 </footer>
 
 <script>
-  // Mobile menu toggle
-  function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('show');
-  }
-
-  // Blog popup functions
+  function toggleMenu() { document.querySelector('.nav-links').classList.toggle('show'); }
   function openBlogPopup(title, content) {
     document.getElementById('blogTitle').innerText = title;
     document.getElementById('blogContent').innerText = content;
     document.getElementById('blogPopup').style.display = 'flex';
   }
-
-  function closeBlogPopup() {
-    document.getElementById('blogPopup').style.display = 'none';
-  }
-
-  // Close popup when clicking outside
-  window.onclick = function(event) {
-    const popup = document.getElementById('blogPopup');
-    if (event.target === popup) {
-      closeBlogPopup();
-    }
-  }
+  function closeBlogPopup() { document.getElementById('blogPopup').style.display = 'none'; }
+  window.onclick = function(event) { if (event.target === document.getElementById('blogPopup')) closeBlogPopup(); }
 </script>
 
 </body>
